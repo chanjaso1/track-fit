@@ -1,0 +1,7 @@
+{
+  "name": "TrackFit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
