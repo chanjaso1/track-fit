@@ -11,4 +11,4 @@ The non-IoT component is achieved through ...
 Our team's initial planning of the app can be found [here](https://myvuwac-my.sharepoint.com/:w:/g/personal/jaymejoan_myvuw_ac_nz/EXBOcLf7DhpMh6hCYpPeLJ8BCIGPOzCHU-kek1MzQ-gieA?e=4HftaS). We also used Gitlab's issue tracking feature to create and assign issues. This allowed our team to work efficiently and keep track of our progress to ensure we completed the project on time. It also provided a clear representation of each of our teammates contributions.
 
 
-# Hot to Set Up the Project
+# Hot to Set Up the Project 
