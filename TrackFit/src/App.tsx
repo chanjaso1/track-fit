@@ -13,6 +13,7 @@ import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './screens/Tab1';
 import Tab2 from './screens/Tab2';
 import Tab3 from './screens/Tab3';
+import Test from './screens/test';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,8 +37,14 @@ import './styles/variables.css';
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+      
+
+
       <IonTabs>
         <IonRouterOutlet>
+        <Route exact path="/test">
+          <Test/>
+        </Route>
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
