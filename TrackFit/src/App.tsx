@@ -78,6 +78,10 @@ const App: React.FC = () => (
 
         {/** Bottom Menu */}
         <IonTabBar slot="bottom">
+        <IonTabButton tab="home" href="/HomeScreen">
+            <IonIcon icon={ellipse} />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
           <IonTabButton tab="stats" href="/StatsScreen">
             <IonIcon icon={triangle} />
             <IonLabel>Stats</IonLabel>

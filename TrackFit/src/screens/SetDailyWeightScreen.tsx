@@ -12,6 +12,7 @@ const SetDailyWeightScreen: React.FC = () => {
       <IonHeader>
         <IonToolbar>
         <IonButtons slot="start">
+          <IonBackButton></IonBackButton>
           <IonTitle>Set Daily Weight</IonTitle>
           </IonButtons>
         </IonToolbar>
@@ -23,9 +24,6 @@ const SetDailyWeightScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 1" />
-        <IonButton onClick={() => dynamicNavigate("/test", "forward", router)}>
-            <IonLabel>Click here</IonLabel>
-          </IonButton>
       </IonContent>
     </IonPage>
   );
