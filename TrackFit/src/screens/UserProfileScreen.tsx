@@ -13,7 +13,6 @@ const UserProfileScreen: React.FC = () => {
       <IonHeader>
         <IonToolbar>
         <IonButtons slot="start">
-          <IonBackButton ></IonBackButton>
           <IonTitle>User Profile Screen</IonTitle>
           </IonButtons>
         </IonToolbar>
@@ -25,8 +24,8 @@ const UserProfileScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="testing" />
-        <IonButton onClick={() => router.goBack()}>
-            <IonLabel>Click here</IonLabel>
+        <IonButton onClick={() => {dynamicNavigate("/SetGoalScreen", "forward", router)}}>
+            <IonLabel>Set Goal</IonLabel>
           </IonButton>
       </IonContent>
     </IonPage>

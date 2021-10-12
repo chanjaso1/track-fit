@@ -1,8 +1,12 @@
 import { IonButton, IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
+import { dynamicNavigate } from '../functions/navigation';
+import { useIonRouter } from '@ionic/react';
 // import './Tab2.css';
 
 const SetWorkoutScreen: React.FC = () => {
+  const router = useIonRouter()
+
   return (
     <IonPage>
       <IonHeader>
@@ -17,8 +21,8 @@ const SetWorkoutScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
-        <IonButton onClick={() => {console.log("clicking")}}>
-          <IonLabel>click here</IonLabel>
+        <IonButton onClick={() => {dynamicNavigate("/InWorkoutScreen", "forward", router)}}>
+          <IonLabel>Start</IonLabel>
         </IonButton>
       </IonContent>
     </IonPage>

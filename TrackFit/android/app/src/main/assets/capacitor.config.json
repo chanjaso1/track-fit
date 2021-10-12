@@ -2,8 +2,5 @@
 	"appId": "io.ionic.starter",
 	"appName": "TrackFit",
 	"webDir": "build",
-	"bundledWebRuntime": false,
-	"server": {
-		"url": "http://10.140.139.91:8100"
-	}
+	"bundledWebRuntime": false
 }
