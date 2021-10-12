@@ -2,9 +2,9 @@ import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonItem, I
 import { useIonRouter } from "@ionic/react";
 import ExploreContainer from '../components/ExploreContainer';
 import { dynamicNavigate } from '../functions/navigation';
-import './Tab1.css';
+// import './Tab1.css';
 
-const Tab1: React.FC = () => {
+const SetDailyWeightScreen: React.FC = () => {
   const router = useIonRouter();
 
   return (
@@ -12,7 +12,7 @@ const Tab1: React.FC = () => {
       <IonHeader>
         <IonToolbar>
         <IonButtons slot="start">
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>Set Daily Weight</IonTitle>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -31,4 +31,4 @@ const Tab1: React.FC = () => {
   );
 };
 
-export default Tab1;
+export default SetDailyWeightScreen;

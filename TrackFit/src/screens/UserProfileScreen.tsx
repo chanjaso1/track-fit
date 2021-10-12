@@ -1,10 +1,10 @@
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonLabel } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { useIonRouter } from "@ionic/react";
-import './Tab1.css';
+// import './Tab1.css';
 import { dynamicNavigate } from '../functions/navigation';
 
-const Test: React.FC = () => {
+const UserProfileScreen: React.FC = () => {
 	//	Initializing our router
 	const router = useIonRouter();
 
@@ -14,7 +14,7 @@ const Test: React.FC = () => {
         <IonToolbar>
         <IonButtons slot="start">
           <IonBackButton ></IonBackButton>
-          <IonTitle>Test</IonTitle>
+          <IonTitle>User Profile Screen</IonTitle>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -33,4 +33,4 @@ const Test: React.FC = () => {
   );
 };
 
-export default Test;
+export default UserProfileScreen;
