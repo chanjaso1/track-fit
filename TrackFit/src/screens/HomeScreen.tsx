@@ -5,6 +5,8 @@ import ExploreContainer from '../components/ExploreContainer';
 import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from '../functions/navigation';
 
+import { getData } from '../data/utilities/getData';
+
 const HomeScreen: React.FC = () => {
   const router = useIonRouter();
 
@@ -22,7 +24,7 @@ const HomeScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
-        <IonButton onClick={() => {console.log("clicking")}}>
+        <IonButton onClick={() => {console.log("clicking"); getData();}}>
           <IonLabel>click here</IonLabel>
         </IonButton>
       </IonContent>
