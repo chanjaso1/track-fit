@@ -10,9 +10,17 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './screens/Tab1';
-import Tab2 from './screens/Tab2';
-import Tab3 from './screens/Tab3';
+
+/* Screens */
+import HomeScreen from './screens/HomeScreen';
+import InWorkoutScreen from './screens/InWorkoutScreen';
+import ResultsScreen from './screens/ResultsScreen';
+import SetDailyWeightScreen from './screens/SetDailyWeightScreen';
+import SetGoalScreen from './screens/SetGoalScreen';
+import SetWorkoutScreen from './screens/SetWorkoutScreen';
+import StatsScreen from './screens/StatsScreen';
+import UserProfileScreen from './screens/UserProfileScreen';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,32 +45,50 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
+        {/** Navigation */}
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+        <Route exact path="/HomeScreen">
+          <HomeScreen/>
+        </Route>
+          <Route exact path="/InWorkoutScreen">
+            <InWorkoutScreen />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/ResultsScreen">
+            <ResultsScreen />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/SetDailyWeightScreen">
+            <SetDailyWeightScreen />
+          </Route>
+          <Route path="/SetGoalScreen">
+            <SetGoalScreen />
+          </Route>
+          <Route path="/SetWorkoutScreen">
+            <SetWorkoutScreen />
+          </Route>
+          <Route path="/StatsScreen">
+            <StatsScreen />
+          </Route>
+          <Route path="/UserProfileScreen">
+            <UserProfileScreen />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/HomeScreen" />
           </Route>
         </IonRouterOutlet>
+
+        {/** Bottom Menu */}
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="stats" href="/StatsScreen">
             <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+            <IonLabel>Stats</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="userProfile" href="/UserProfileScreen">
             <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonLabel>User Profile</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="setWorkout" href="/setWorkoutScreen">
             <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonLabel>Workout</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
