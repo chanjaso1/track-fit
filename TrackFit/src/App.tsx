@@ -21,7 +21,6 @@ import SetWorkoutScreen from './screens/SetWorkoutScreen';
 import StatsScreen from './screens/StatsScreen';
 import UserProfileScreen from './screens/UserProfileScreen';
 
-
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
