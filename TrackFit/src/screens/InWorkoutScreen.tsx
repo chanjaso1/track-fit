@@ -16,6 +16,7 @@ import { startCount, stopCount } from "../functions/DeviceMotion";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
+  var subscription: any;
 
   return (
     <IonPage>
@@ -43,19 +44,18 @@ const InWorkoutScreen: React.FC = () => {
         </IonButton>
         <IonButton
           onClick={() => {
-            startCount();
+            subscription = startCount();
+            console.log(subscription);
           }}
         >
-          {" "}
           <IonLabel>Start</IonLabel>
         </IonButton>
         <IonButton
           onClick={() => {
-            stopCount();
+            stopCount(subscription);
           }}
         >
-          {" "}
-          <IonLabel>Stop</IonLabel>{" "}
+          <IonLabel>Stop</IonLabel>
         </IonButton>
       </IonContent>
     </IonPage>

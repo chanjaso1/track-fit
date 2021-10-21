@@ -1,24 +1,34 @@
-import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+/**
+ * https://ionicframework.com/docs/native/device-motion
+ */
 
-var subscription : any;
+import {
+  DeviceMotion,
+  DeviceMotionAccelerationData,
+  DeviceMotionAccelerometerOptions,
+} from "@ionic-native/device-motion";
 
-DeviceMotion.getCurrentAcceleration().then(
-  (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
-  (error: any) => console.log(error)
-);
+// DeviceMotion.getCurrentAcceleration().then(
+//   (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
+//   (error: any) => console.log(error)
+// );
 
 export const startCount = () => {
-// Watch device acceleration
-subscription = DeviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
-    console.log(acceleration);
-  });
-}
+  // Watch device acceleration
+  //  subscription: any;
+  var options: DeviceMotionAccelerometerOptions = { frequency: 100 };
 
+  var subscription = DeviceMotion.watchAcceleration(options).subscribe(
+    (acceleration: DeviceMotionAccelerationData) => {
+      console.log(acceleration);
+    }
+  );
+  return subscription;
+};
 
 // Stop watch
 
-export const stopCount = () => {
-    subscription.unsubscribe();
-    console.log("Stopped");
-}
-
+export const stopCount = (subscription: any) => {
+  subscription.unsubscribe();
+  console.log("Stopped");
+};
