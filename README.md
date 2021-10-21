@@ -15,6 +15,7 @@ Our team's initial planning of the app can be found [here](https://myvuwac-my.sh
 
 
 **Command to Run Emulator:** `ionic cap run android --target Pixel_4_API_30 -l --external`
+
 **Command to Run Emulator with console logs:** `ionic cap run android --target Pixel_4_API_30 -l --external --consolelogs --serverlogs`
 
 
