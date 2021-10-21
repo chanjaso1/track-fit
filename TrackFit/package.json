@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@angular/core": "^12.2.11",
     "@capacitor/android": "3.2.4",
     "@capacitor/app": "1.0.3",
     "@capacitor/camera": "^1.1.0",
@@ -14,6 +15,7 @@
     "@capacitor/storage": "^1.2.0",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/device-motion": "^5.36.0",
+    "@ionic-native/vibration": "^5.36.0",
     "@ionic-native/vibration": "^5.36.0",
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
@@ -27,6 +29,7 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "cordova-plugin-device-motion": "^2.0.1",
+    "cordova-plugin-vibration": "^3.1.1",
     "cordova-plugin-vibration": "^3.1.1",
     "firebase": "^9.1.2",
     "ionicons": "^5.4.0",
