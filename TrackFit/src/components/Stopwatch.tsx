@@ -1,5 +1,5 @@
 /**
- * The Stopwatch component keeps track of the time the user has spent working out.
+ * The Stopwatch component is located on the In Workout screen and keeps track of the time the user has spent working out.
  *
  * References:
  * https://forum.ionicframework.com/t/making-buttons-side-by-side/162278/7
