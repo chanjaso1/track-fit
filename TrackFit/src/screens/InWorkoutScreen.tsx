@@ -13,10 +13,14 @@ import ExploreContainer from "../components/ExploreContainer";
 import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
 import { startCount, stopCount } from "../functions/DeviceMotion";
+import { useSetIsRecording, useIsRecording } from "../functions/Context";
+import { Subscription } from "rxjs";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
-  var subscription: any;
+  var subscription: Subscription;
+  const isRecording = useIsRecording();
+  const setIsRecording = useSetIsRecording();
 
   return (
     <IonPage>
@@ -42,18 +46,27 @@ const InWorkoutScreen: React.FC = () => {
         >
           <IonLabel>End</IonLabel>
         </IonButton>
+
         <IonButton
           onClick={() => {
-            subscription = startCount();
-            console.log(subscription);
+            // subscription = startCount();
+            // console.log(subscription);
+
+            setIsRecording(!isRecording);
+            console.log(isRecording);
           }}
+          disabled={isRecording}
         >
           <IonLabel>Start</IonLabel>
         </IonButton>
+
         <IonButton
           onClick={() => {
-            stopCount(subscription);
+            // stopCount(subscription);
+            setIsRecording(!isRecording);
+            console.log(isRecording);
           }}
+          disabled={!isRecording}
         >
           <IonLabel>Stop</IonLabel>
         </IonButton>

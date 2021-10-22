@@ -3,13 +3,32 @@ import ExploreContainer from '../components/ExploreContainer';
 import { dynamicNavigate } from '../functions/navigation';
 import { useIonRouter } from '@ionic/react';
 import LineChart from '../components/LineChart';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getWeek } from '../data/utilities/Firestore';
+import { useSetWeightContext, useWeightContext } from '../functions/Context';
 // import './Tab3.css';
 
 const StatsScreen: React.FC = () => {
 	//	Initializing our router
 	const router = useIonRouter();
-    const [weight, setWeights] = useState<any>();
+    //const [weights, setWeights] = useState<any>([]);
+
+    const weights = useWeightContext();
+    const setWeights = useSetWeightContext();
+    const [dates, setDates] = useState(['0','1','2','3','4','5','6','']);
+
+    useEffect(() => {
+        var d = new Date();
+        var p: any = [''];
+        getWeek().then(function(result) {
+            if (result !== null) {setWeights(result)} else {setWeights([])}
+        })
+        for (var i = 0; i < 7; i++) {
+            p = [d.getDate().toString(), ...p]
+            d.setDate(d.getDate() -1);
+        }
+        setDates(p)
+    }, []);
 
   return (
     <IonPage>
@@ -26,10 +45,10 @@ const StatsScreen: React.FC = () => {
         </IonHeader>
         <ExploreContainer name="Stats" />
         <IonButton onClick={() => dynamicNavigate("/setDailyWeightScreen", "forward", router)}>
-            <IonLabel>Add a weight</IonLabel>
+            <IonLabel>Set Today's weight</IonLabel>
           </IonButton>
           <IonItem>
-              <LineChart weights={[0, 1]} days={['MON','TUE','WED','THU','FRI','SAT','SUN','']} />
+              <LineChart weights={weights} days={dates} />
           </IonItem>
       </IonContent>
     </IonPage>

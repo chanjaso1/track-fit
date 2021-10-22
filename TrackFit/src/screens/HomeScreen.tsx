@@ -17,6 +17,7 @@ import ActivateVibration from "../components/Vibration";
 import { dynamicNavigate } from "../functions/navigation";
 
 import { getData } from "../data/utilities/getData";
+import { getWeek } from "../data/utilities/Firestore";
 
 const HomeScreen: React.FC = () => {
   const router = useIonRouter();

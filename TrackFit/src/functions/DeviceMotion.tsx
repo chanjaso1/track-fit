@@ -7,6 +7,7 @@ import {
   DeviceMotionAccelerationData,
   DeviceMotionAccelerometerOptions,
 } from "@ionic-native/device-motion";
+import { Subscription } from "rxjs";
 
 // DeviceMotion.getCurrentAcceleration().then(
 //   (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
@@ -27,8 +28,7 @@ export const startCount = () => {
 };
 
 // Stop watch
-
-export const stopCount = (subscription: any) => {
+export const stopCount = (subscription: Subscription) => {
   subscription.unsubscribe();
   console.log("Stopped");
 };
