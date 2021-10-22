@@ -20,6 +20,7 @@ const Stopwatch: React.FC = () => {
   const [minutes, setMinute] = useState(0);
   const [seconds, setSecond] = useState(0);
   const [time, setTime] = useState("00:00:00");
+  const [timerRunning, setTimerRunning] = useState(false);
 
   useEffect(() => {
     countUp();
@@ -31,6 +32,8 @@ const Stopwatch: React.FC = () => {
    * If 60 minutes is reached, increment hours by 1 and reset minutes to 0. Otherwise, continue incrementing minutes.
    */
   function countUp() {
+    if (!timerRunning) return; // stops timer counting up
+
     setTimeout(() => {
       // if full second, increment minute
       if (seconds >= 59) {
@@ -83,7 +86,7 @@ const Stopwatch: React.FC = () => {
           <IonButton
             expand="full"
             onClick={() => {
-              console.log("start");
+              setTimerRunning(true);
             }}
           >
             <IonLabel>START</IonLabel>
@@ -93,7 +96,7 @@ const Stopwatch: React.FC = () => {
           <IonButton
             expand="full"
             onClick={() => {
-              console.log("stop");
+              setTimerRunning(false);
             }}
           >
             <IonLabel>STOP</IonLabel>
