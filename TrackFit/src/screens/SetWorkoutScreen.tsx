@@ -1,11 +1,19 @@
-import { IonButton, IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import { dynamicNavigate } from '../functions/navigation';
-import { useIonRouter } from '@ionic/react';
-// import './Tab2.css';
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonLabel,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import ExploreContainer from "../components/ExploreContainer";
+import { dynamicNavigate } from "../functions/navigation";
+import { useIonRouter } from "@ionic/react";
+import Stopwatch from "../components/Stopwatch";
 
 const SetWorkoutScreen: React.FC = () => {
-  const router = useIonRouter()
+  const router = useIonRouter();
 
   return (
     <IonPage>
@@ -15,13 +23,13 @@ const SetWorkoutScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <ExploreContainer name="Tab 2 page" />
-        <IonButton onClick={() => {dynamicNavigate("/InWorkoutScreen", "forward", router)}}>
+        <Stopwatch />
+        <IonButton
+          onClick={() => {
+            dynamicNavigate("/InWorkoutScreen", "forward", router);
+          }}
+        >
           <IonLabel>Start</IonLabel>
         </IonButton>
       </IonContent>
