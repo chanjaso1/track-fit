@@ -15,6 +15,7 @@ import { dynamicNavigate } from "../functions/navigation";
 import { startCount, stopCount } from "../functions/DeviceMotion";
 import { useSetIsRecording, useIsRecording } from "../functions/Context";
 import { Subscription } from "rxjs";
+import Stopwatch from "../components/Stopwatch";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
@@ -39,6 +40,7 @@ const InWorkoutScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
+        <Stopwatch />
         <IonButton
           onClick={() => {
             dynamicNavigate("/ResultsScreen", "forward", router);
