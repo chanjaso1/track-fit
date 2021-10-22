@@ -1,14 +1,26 @@
-import { IonButton, IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonLabel,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import ExploreContainer from "../components/ExploreContainer";
 // import './Tab2.css';
-
 import { useIonRouter } from "@ionic/react";
-import { dynamicNavigate } from '../functions/navigation';
+import { Vibration } from "@ionic-native/vibration/ngx";
 
-import { getData } from '../data/utilities/getData';
+import ActivateVibration from "../components/Vibration";
+
+import { dynamicNavigate } from "../functions/navigation";
+
+import { getData } from "../data/utilities/getData";
 
 const HomeScreen: React.FC = () => {
   const router = useIonRouter();
+  let vibration = new ActivateVibration(new Vibration());
 
   return (
     <IonPage>
@@ -24,7 +36,13 @@ const HomeScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
-        <IonButton onClick={() => {console.log("clicking"); getData();}}>
+        <IonButton
+          onClick={() => {
+            console.log("clicking");
+            vibration.vibrate();
+            getData();
+          }}
+        >
           <IonLabel>click here</IonLabel>
         </IonButton>
       </IonContent>
