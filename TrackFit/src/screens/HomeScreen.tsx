@@ -10,9 +10,9 @@ import {
 import ExploreContainer from "../components/ExploreContainer";
 // import './Tab2.css';
 import { useIonRouter } from "@ionic/react";
-// import { Vibration } from "@ionic-native/vibration/ngx";
+import { Vibration } from "@ionic-native/vibration/ngx";
 
-// import ActivateVibration from "../components/Vibration";
+import ActivateVibration from "../components/Vibration";
 
 import { dynamicNavigate } from "../functions/navigation";
 
@@ -20,7 +20,7 @@ import { getData } from "../data/utilities/getData";
 
 const HomeScreen: React.FC = () => {
   const router = useIonRouter();
-  // let vibration = new ActivateVibration(new Vibration());
+  let vibration = new ActivateVibration(new Vibration());
 
   return (
     <IonPage>
@@ -39,7 +39,7 @@ const HomeScreen: React.FC = () => {
         <IonButton
           onClick={() => {
             console.log("clicking");
-            // vibration.vibrate();
+            vibration.vibrate();
             getData();
           }}
         >
