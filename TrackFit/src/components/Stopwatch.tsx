@@ -16,9 +16,9 @@ import {
 } from "@ionic/react";
 
 const Stopwatch: React.FC = () => {
-  const [hours, setHour] = useState(2);
-  const [minutes, setMinute] = useState(59);
-  const [seconds, setSecond] = useState(55);
+  const [hours, setHour] = useState(0);
+  const [minutes, setMinute] = useState(0);
+  const [seconds, setSecond] = useState(0);
   const [time, setTime] = useState("00:00:00");
 
   useEffect(() => {
@@ -27,8 +27,8 @@ const Stopwatch: React.FC = () => {
 
   /**
    * Increments the timer in one second intervals.
-   * If 60 seconds is reached, increment minute by 1. Otherwise, continue incrementing seconds.
-   * If 60 minutes is reached, increment hours by 1. Otherwise, continue incrementing minutes.
+   * If 60 seconds is reached, increment minutes by 1 and reset seconds to 0. Otherwise, continue incrementing seconds.
+   * If 60 minutes is reached, increment hours by 1 and reset minutes to 0. Otherwise, continue incrementing minutes.
    */
   function countUp() {
     setTimeout(() => {
@@ -48,24 +48,15 @@ const Stopwatch: React.FC = () => {
         setSecond(seconds + 1);
       }
 
-      // increment second
-      // setSecond(seconds >= 59 ? 0 : seconds + 1);
-
-      // // increment minute
-      // if (minutes >= 59) setMinute(0);
-      // else setMinute(seconds >= 59 ? minutes + 1 : minutes);
-
-      // // increment hour
-      // setHour(minutes >= 59 ? hours + 1 : hours);
+      // format the time
       setTime(formatTime());
-
-      console.log("time: " + time);
       return time;
     }, 1000);
   }
 
   /**
-   * Format time to be HH:MM:SS.
+   * Format time to be in HH:MM:SS.
+   * Reference: https://demo.mobiscroll.com/react/timer/stopwatch
    */
   function formatTime() {
     return (
@@ -79,21 +70,6 @@ const Stopwatch: React.FC = () => {
       seconds
     );
   }
-
-  /**
-   * Start the Stopwatch.
-   */
-  const startStopwatch = () => {};
-
-  /**
-   * Stop the Stopwatch.
-   */
-  const stopStopwatch = () => {};
-
-  /**
-   * Reset the Stopwatch to zero.
-   */
-  const resetStopwatch = () => {};
 
   return (
     <IonGrid>
