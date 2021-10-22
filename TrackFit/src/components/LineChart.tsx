@@ -13,7 +13,7 @@ const LineChart: React.FC<ChartProps> = ({weights, days}) => {
         labels: days,
         datasets: [
           {
-            label: 'This Week',
+            label: 'Weight',
             backgroundColor: 'rgba(255,99,132,0.2)',
             borderColor: 'rgba(255,99,132,1)',
             borderWidth: 3,

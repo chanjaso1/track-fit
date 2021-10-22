@@ -23,12 +23,30 @@ export function useSetIsRecording() {
 
 export default function ContextProvider(props: { children: React.ReactNode }) {
   const [initialIsRecording, setInitialIsRecording] = useState(false);
+  const [initialWeight, setInitialWeight] = useState([]);
 
   return (
-    <isRecordingContext.Provider value={initialIsRecording}>
-      <setIsRecordingContext.Provider value={setInitialIsRecording}>
-        {props.children}
-      </setIsRecordingContext.Provider>
-    </isRecordingContext.Provider>
+    <weightContext.Provider value={initialWeight}>
+        <setWeightContext.Provider value={setInitialWeight}>
+        <isRecordingContext.Provider value={initialIsRecording}>
+        <setIsRecordingContext.Provider value={setInitialIsRecording}>
+            {props.children}
+        </setIsRecordingContext.Provider>
+        </isRecordingContext.Provider>
+        </setWeightContext.Provider>
+    </weightContext.Provider>
   );
+}
+
+// -- 
+
+const weightContext = createContext([] as any);
+const setWeightContext = createContext(
+    {} as React.Dispatch<React.SetStateAction<any>>
+);
+export function useWeightContext() {
+    return useContext(weightContext);
+}
+export function useSetWeightContext() {
+    return useContext(setWeightContext);
 }
