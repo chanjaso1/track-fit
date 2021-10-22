@@ -4,6 +4,7 @@ import { useIonRouter } from "@ionic/react";
 import ExploreContainer from '../components/ExploreContainer';
 import { dynamicNavigate } from '../functions/navigation';
 import { writeWeight } from '../data/utilities/Firestore';
+import { useSetWeightContext, useWeightContext } from '../functions/Context';
 // import './Tab1.css';
 
 const SetDailyWeightScreen: React.FC = () => {
@@ -13,6 +14,9 @@ const SetDailyWeightScreen: React.FC = () => {
   var d= new Date();
   var date = String(d.getDate())+"-"+String(d.getMonth()+1)+"-"+String(d.getFullYear());
 
+  const weights = useWeightContext();
+  const setWeights = useSetWeightContext();
+  
   return (
     <IonPage>
       <IonHeader>
@@ -30,10 +34,14 @@ const SetDailyWeightScreen: React.FC = () => {
         </IonItem>
         <IonText>{date}</IonText>
 
-        <IonButton onClick={() => {writeWeight(date, number);}}>
+        <IonButton onClick={() => {
+            writeWeight(date, number);
+            weights.splice(-1, number);
+            setWeights([...weights, number]);
+            }}>
           <IonLabel>Register Weight</IonLabel>
         </IonButton>
-    
+    //
       </IonContent>
     </IonPage>
   );
