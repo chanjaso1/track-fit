@@ -1,19 +1,28 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonLabel } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonButton,
+  IonLabel,
+} from "@ionic/react";
+import ExploreContainer from "../components/ExploreContainer";
 import { useIonRouter } from "@ionic/react";
-// import './Tab1.css';
-import { dynamicNavigate } from '../functions/navigation';
+import { dynamicNavigate } from "../functions/navigation";
 
 const UserProfileScreen: React.FC = () => {
-	//	Initializing our router
-	const router = useIonRouter();
+  //	Initializing our router
+  const router = useIonRouter();
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-        <IonButtons slot="start">
-          <IonTitle>User Profile Screen</IonTitle>
+          <IonButtons slot="start">
+            <IonTitle>User Profile Screen</IonTitle>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -23,10 +32,14 @@ const UserProfileScreen: React.FC = () => {
             <IonTitle size="large">test</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="testing" />
-        <IonButton onClick={() => {dynamicNavigate("/SetGoalScreen", "forward", router)}}>
-            <IonLabel>Set Goal</IonLabel>
-          </IonButton>
+        <ExploreContainer name="User Profile" />
+        <IonButton
+          onClick={() => {
+            dynamicNavigate("/SetGoalScreen", "forward", router);
+          }}
+        >
+          <IonLabel>Set Goal</IonLabel>
+        </IonButton>
       </IonContent>
     </IonPage>
   );
