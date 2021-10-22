@@ -3,13 +3,23 @@ import ExploreContainer from '../components/ExploreContainer';
 import { dynamicNavigate } from '../functions/navigation';
 import { useIonRouter } from '@ionic/react';
 import LineChart from '../components/LineChart';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getWeek } from '../data/utilities/Firestore';
 // import './Tab3.css';
 
 const StatsScreen: React.FC = () => {
 	//	Initializing our router
 	const router = useIonRouter();
-    const [weight, setWeights] = useState<any>();
+    const [weights, setWeights] = useState<any>([]);
+
+    useEffect(() => {
+        getWeek().then(function(result) {
+            console.log("did")
+            if (result !== null) {setWeights(result)} else {setWeights([])}
+        })
+        // console.log(weights)
+        console.log("did useEffect")
+    }, []);
 
   return (
     <IonPage>
@@ -29,7 +39,7 @@ const StatsScreen: React.FC = () => {
             <IonLabel>Add a weight</IonLabel>
           </IonButton>
           <IonItem>
-              <LineChart weights={[0, 1]} days={['MON','TUE','WED','THU','FRI','SAT','SUN','']} />
+              <LineChart weights={weights} days={['MON','TUE','WED','THU','FRI','SAT','SUuN','']} />
           </IonItem>
       </IonContent>
     </IonPage>
