@@ -27,7 +27,7 @@ const LineChart: React.FC<ChartProps> = ({weights, days}) => {
     return (
         <Line data={lineChartData}
         options={{
-                scales: {xAxes: {ticks: {display: false}}}
+                //scales: {xAxes: {ticks: {display: false}}}
               }}/>
     )
 };
