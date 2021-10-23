@@ -1,5 +1,5 @@
 /** 
-* This file provides the styling for the Stats screen.
+* This file provides the default styling for a screen. This allows any screen to use these properties
 */
 .page {
   flex: 1;
