@@ -14,6 +14,9 @@ import {
   IonCol,
   IonText,
 } from "@ionic/react";
+import { Subscription } from "rxjs";
+import { useIsRecording, useStepsContext } from "../functions/Context";
+import { startCount } from "../functions/DeviceMotion";
 
 const Stopwatch: React.FC = () => {
   const [hours, setHour] = useState(0);
@@ -21,6 +24,12 @@ const Stopwatch: React.FC = () => {
   const [seconds, setSecond] = useState(0);
   const [time, setTime] = useState("00:00:00");
   const [timerRunning, setTimerRunning] = useState(false);
+  // const[subscriptions ]
+
+  let subscriptions = [] as Subscription[];
+  const isRecordingContext = useIsRecording();
+  // const setIsRecording = useSetIsRecording();
+  const stepsContext = useStepsContext();
 
   useEffect(() => {
     countUp();
@@ -87,7 +96,10 @@ const Stopwatch: React.FC = () => {
             expand="full"
             onClick={() => {
               setTimerRunning(true);
+              startCount(stepsContext, isRecordingContext);
+              isRecordingContext.isRecording = true;
             }}
+            disabled={isRecordingContext.isRecording}
           >
             <IonLabel>START</IonLabel>
           </IonButton>
@@ -97,7 +109,12 @@ const Stopwatch: React.FC = () => {
             expand="full"
             onClick={() => {
               setTimerRunning(false);
+              // stopCount(subscription);
+              // subscriptions = disposeSubscriptions(subscriptions);
+              isRecordingContext.isRecording = false;
+              // console.log(isRecording);
             }}
+            disabled={!isRecordingContext.isRecording}
           >
             <IonLabel>STOP</IonLabel>
           </IonButton>

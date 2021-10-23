@@ -15,18 +15,15 @@ export interface stepsContextInterface {
   firstStep: number;
   secondStep: number;
 }
-const isRecordingContext = createContext(false as boolean);
-const setIsRecordingContext = createContext(
-  {} as React.Dispatch<React.SetStateAction<boolean>>
-);
+
+export interface isRecordingInterface {
+  isRecording: boolean;
+}
+const isRecordingContext = createContext({} as isRecordingInterface);
 
 const stepsContext = createContext({} as stepsContextInterface);
 export function useIsRecording() {
   return useContext(isRecordingContext);
-}
-
-export function useSetIsRecording() {
-  return useContext(setIsRecordingContext);
 }
 
 export function useStepsContext() {
@@ -34,7 +31,7 @@ export function useStepsContext() {
 }
 
 export default function ContextProvider(props: { children: React.ReactNode }) {
-  const [initialIsRecording, setInitialIsRecording] = useState(false);
+  // const [initialIsRecording, setInitialIsRecording] = useState(false);
   const [initialWeight, setInitialWeight] = useState([]);
 
   const stepObject: any = {
@@ -43,15 +40,17 @@ export default function ContextProvider(props: { children: React.ReactNode }) {
     secondStep: -99,
   };
 
+  const isRecordingObject: any = {
+    isRecording: false,
+  };
+
   return (
     <weightContext.Provider value={initialWeight}>
       <setWeightContext.Provider value={setInitialWeight}>
-        <isRecordingContext.Provider value={initialIsRecording}>
-          <setIsRecordingContext.Provider value={setInitialIsRecording}>
-            <stepsContext.Provider value={stepObject}>
-              {props.children}
-            </stepsContext.Provider>
-          </setIsRecordingContext.Provider>
+        <isRecordingContext.Provider value={isRecordingObject}>
+          <stepsContext.Provider value={stepObject}>
+            {props.children}
+          </stepsContext.Provider>
         </isRecordingContext.Provider>
       </setWeightContext.Provider>
     </weightContext.Provider>
