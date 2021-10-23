@@ -12,22 +12,11 @@ import {
 import ExploreContainer from "../components/ExploreContainer";
 import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
-import { startCount } from "../functions/DeviceMotion";
-import {
-  useSetIsRecording,
-  useIsRecording,
-  useStepsContext,
-} from "../functions/Context";
-import { Subscription } from "rxjs";
 import Stopwatch from "../components/Stopwatch";
 import Dropdown from "../components/Dropdown";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
-  var subscription: Subscription;
-  const isRecording = useIsRecording();
-  const setIsRecording = useSetIsRecording();
-  const stepsContext = useStepsContext();
 
   return (
     <IonPage>
@@ -54,29 +43,6 @@ const InWorkoutScreen: React.FC = () => {
           }}
         >
           <IonLabel>End</IonLabel>
-        </IonButton>
-
-        <IonButton
-          onClick={() => {
-            subscription = startCount(stepsContext);
-
-            setIsRecording(!isRecording);
-            console.log(isRecording);
-          }}
-          disabled={isRecording}
-        >
-          <IonLabel>Start</IonLabel>
-        </IonButton>
-
-        <IonButton
-          onClick={() => {
-            // stopCount(subscription);
-            setIsRecording(!isRecording);
-            console.log(isRecording);
-          }}
-          disabled={!isRecording}
-        >
-          <IonLabel>Stop</IonLabel>
         </IonButton>
       </IonContent>
     </IonPage>

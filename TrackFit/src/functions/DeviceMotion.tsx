@@ -7,20 +7,22 @@ import {
   DeviceMotionAccelerationData,
   DeviceMotionAccelerometerOptions,
 } from "@ionic-native/device-motion";
-import { Subscription } from "rxjs";
-import { stepsContextInterface } from "./Context";
+import { isRecordingInterface, stepsContextInterface } from "./Context";
 
 /**
  * Start to record the accelerometer and check if steps are taken.
  * @param stepsContext
  * @returns the subscription of the accelerometer
  */
-export const startCount = (stepsContext: stepsContextInterface) => {
+export const startCount = (
+  stepsContext: stepsContextInterface,
+  stillRecording: isRecordingInterface
+) => {
   var options: DeviceMotionAccelerometerOptions = { frequency: 10 };
 
   var subscription = DeviceMotion.watchAcceleration(options).subscribe(
     (acceleration: DeviceMotionAccelerationData) => {
-      // console.log(acceleration); //print the acceleration data
+      // console.log(acceleration);
       if (stepsContext.firstStep == -99) {
         stepsContext.firstStep = acceleration.x;
       } else if (stepsContext.secondStep == -99) {
@@ -33,18 +35,13 @@ export const startCount = (stepsContext: stepsContextInterface) => {
       }
       stepsContext.firstStep = stepsContext.secondStep;
       stepsContext.secondStep = acceleration.x;
+
+      //unsubscribe if the user has stopped their workout
+      if (!stillRecording.isRecording && subscription) {
+        subscription.unsubscribe();
+      }
     }
   );
-  return subscription;
-};
-
-/**
- * Stop recording the accelerometer
- * @param subscription
- */
-export const stopCount = (subscription: Subscription) => {
-  subscription.unsubscribe();
-  console.log("Stopped");
 };
 
 /**
