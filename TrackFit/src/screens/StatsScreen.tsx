@@ -71,7 +71,7 @@ const StatsScreen: React.FC = () => {
             <IonRow>
               <IonCol>
                 <h1>Today's Weight</h1>
-                <p>Want to enter today's weight? Click this button!</p>
+                <p>Click this button to enter today's weight.</p>
                 <IonButton
                   expand="full"
                   onClick={() =>
