@@ -8,27 +8,57 @@ import {
   DeviceMotionAccelerometerOptions,
 } from "@ionic-native/device-motion";
 import { Subscription } from "rxjs";
+import { stepsContextInterface } from "./Context";
 
-// DeviceMotion.getCurrentAcceleration().then(
-//   (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
-//   (error: any) => console.log(error)
-// );
-
-export const startCount = () => {
-  // Watch device acceleration
-  //  subscription: any;
-  var options: DeviceMotionAccelerometerOptions = { frequency: 100 };
+/**
+ * Start to record the accelerometer and check if steps are taken.
+ * @param stepsContext
+ * @returns the subscription of the accelerometer
+ */
+export const startCount = (stepsContext: stepsContextInterface) => {
+  var options: DeviceMotionAccelerometerOptions = { frequency: 10 };
 
   var subscription = DeviceMotion.watchAcceleration(options).subscribe(
     (acceleration: DeviceMotionAccelerationData) => {
-      console.log(acceleration);
+      // console.log(acceleration); //print the acceleration data
+      if (stepsContext.firstStep == -99) {
+        stepsContext.firstStep = acceleration.x;
+      } else if (stepsContext.secondStep == -99) {
+      }
+
+      if (isStep(stepsContext)) {
+        //Make a new step if it is a step
+        stepsContext.currentSteps = stepsContext.currentSteps + 1;
+        console.log("new steps!!: " + stepsContext.currentSteps);
+      }
+      stepsContext.firstStep = stepsContext.secondStep;
+      stepsContext.secondStep = acceleration.x;
     }
   );
   return subscription;
 };
 
-// Stop watch
+/**
+ * Stop recording the accelerometer
+ * @param subscription
+ */
 export const stopCount = (subscription: Subscription) => {
   subscription.unsubscribe();
   console.log("Stopped");
+};
+
+/**
+ * Check that the device motion counts as a step
+ * @param stepsContext
+ * @returns true if it is a step
+ */
+export const isStep = (stepsContext: stepsContextInterface) => {
+  //check that the first and second step is in the opposite direction.
+  if (
+    (stepsContext.secondStep < 0 && stepsContext.firstStep > 0) ||
+    (stepsContext.secondStep > 0 && stepsContext.firstStep < 0)
+  ) {
+    return true; //count as a step
+  }
+  return false;
 };
