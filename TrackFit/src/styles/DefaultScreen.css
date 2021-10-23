@@ -19,3 +19,17 @@
   font-size: medium;
   font-weight: 300;
 }
+
+.timer {
+  flex: 1;
+  align-content: center;
+  border: 1px solid darkblue;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.timer h1 {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+}

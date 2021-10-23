@@ -19,6 +19,8 @@ import { useIsRecording, useStepsContext } from "../functions/Context";
 import { startCount } from "../functions/DeviceMotion";
 import { TextStats } from "./TextStats";
 
+import "../styles/DefaultScreen.css";
+
 const Stopwatch: React.FC = () => {
   const [hours, setHour] = useState(0);
   const [minutes, setMinute] = useState(0);
@@ -84,14 +86,16 @@ const Stopwatch: React.FC = () => {
     <IonGrid>
       <IonRow>
         <IonCol>
-          <IonText>{time}</IonText>
+          <div className="timer">
+            <h1>{time}</h1>
+          </div>
         </IonCol>
       </IonRow>
-      <IonRow>
+      {/* <IonRow>
         <IonCol>
           <TextStats />
         </IonCol>
-      </IonRow>
+      </IonRow> */}
       <IonRow>
         <IonCol>
           <IonButton
@@ -121,6 +125,11 @@ const Stopwatch: React.FC = () => {
           >
             <IonLabel>STOP</IonLabel>
           </IonButton>
+        </IonCol>
+      </IonRow>
+      <IonRow>
+        <IonCol>
+          <TextStats />
         </IonCol>
       </IonRow>
     </IonGrid>
