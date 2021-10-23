@@ -1,6 +1,8 @@
-import { IonRow, IonText } from "@ionic/react";
+import { IonRow } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useStepsContext } from "../functions/Context";
+
+import "../styles/styles.css";
 
 //props: { children: React.ReactNode }
 export const TextStats = () => {
@@ -41,19 +43,19 @@ export const TextStats = () => {
   //16.9/2 steps to burn one calorie when running at 4.83 * 2 kph
 
   return (
-    <>
+    <div className="workoutStats">
       <IonRow>
-        <IonText>{totalSteps}</IonText>
+        <p>{totalSteps}</p>
       </IonRow>
       <IonRow>
-        <IonText>{steps}</IonText>
+        <p>{steps}</p>
       </IonRow>
       <IonRow>
-        <IonText>{distance}</IonText>
+        <p>{distance}</p>
       </IonRow>
       <IonRow>
-        <IonText>{caloriesBurned}</IonText>
+        <p>{caloriesBurned}</p>
       </IonRow>
-    </>
+    </div>
   );
 };

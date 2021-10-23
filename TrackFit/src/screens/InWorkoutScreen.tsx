@@ -8,13 +8,16 @@ import {
   IonToolbar,
   IonBackButton,
   IonButtons,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
 import Stopwatch from "../components/Stopwatch";
-import Dropdown from "../components/Dropdown";
 import { useStepsContext } from "../functions/Context";
+
+import "../styles/styles.css";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
@@ -31,21 +34,27 @@ const InWorkoutScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
-        <Stopwatch />
-        <Dropdown />
-        <IonButton
-          onClick={() => {
-            dynamicNavigate("/ResultsScreen", "forward", router);
-          }}
-        >
-          <IonLabel>End</IonLabel>
-        </IonButton>
+        <div className="page">
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <Stopwatch />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonButton
+                  expand="full"
+                  onClick={() => {
+                    dynamicNavigate("/ResultsScreen", "forward", router);
+                  }}
+                >
+                  <IonLabel>END WORKOUT</IonLabel>
+                </IonButton>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </div>
       </IonContent>
     </IonPage>
   );

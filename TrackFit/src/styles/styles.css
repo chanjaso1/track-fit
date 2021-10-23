@@ -1,0 +1,74 @@
+/** 
+* This file contains all the styles used throughout the app.
+*/
+.page {
+  flex: 1;
+  flex-direction: column;
+  align-content: stretch;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.page h1 {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.page p {
+  font-size: medium;
+  font-weight: 300;
+}
+
+.timer {
+  flex: 1;
+  align-content: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.timer h1 {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+.workoutStats {
+  flex: 1;
+  flex-direction: column;
+  align-content: stretch;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.workoutStats p {
+  font-size: medium;
+  font-weight: normal;
+}
+
+.userProfileBackground {
+  flex: 1;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.dailyGoals {
+  flex: 0.5;
+}
+
+.dailyGoals p {
+  font-size: medium;
+  font-weight: 300;
+}
+
+.userDetails {
+  flex: 0.5;
+}
+
+.userDetails h1 {
+  font-size: x-large;
+  font-weight: bold;
+}
