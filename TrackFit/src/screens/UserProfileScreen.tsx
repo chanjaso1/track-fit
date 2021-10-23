@@ -26,8 +26,10 @@ import { useState } from "react";
 import { updateUserDetails } from "../data/utilities/Firestore";
 import { useGoalsContext, useSetGoalsContext } from "../functions/Context";
 
+import "../styles/UserProfileScreen.css";
+
 const UserProfileScreen: React.FC = () => {
-  const router = useIonRouter();  // Initializes the router
+  const router = useIonRouter(); // Initializes the router
 
   const [name, setName] = useState<string>("");
   const [age, setAge] = useState<number>(NaN);
@@ -44,40 +46,61 @@ const UserProfileScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonList>
-          <IonItem>
-            <IonLabel>Enter Name: </IonLabel>
-            <IonInput
-              value={name}
-              placeholder="eg. Spongebob"
-              onIonChange={(e) => setName(e.detail.value!)}
-            ></IonInput>
-          </IonItem>
-          <IonItem>
-            <IonLabel>Enter Age: </IonLabel>
-            <IonInput
-              type="number"
-              value={age}
-              placeholder="eg. 25"
-              onIonChange={(e) => setAge(parseInt(e.detail.value!, 10))}
-            ></IonInput>
-          </IonItem>
-        </IonList>
-        <IonButton onClick={() => updateUserDetails(name, age)}>
-          <IonLabel>Save Details</IonLabel>
-        </IonButton>
-        <IonButton onClick={() => dynamicNavigate("/SetGoalScreen", "forward", router)} >
-          <IonLabel>Set Goals</IonLabel>
-        </IonButton>
-
-        <IonList>
-            <IonItem><IonText>Daily Calorie Goal: {goals.cal}</IonText></IonItem>
-            <IonItem><IonText>Daily Distance Goal: {goals.dist}</IonText></IonItem>
-            <IonItem><IonText>Daily Steps Goal: {goals.step}</IonText></IonItem>
-            <IonItem><IonText>Weight Goal: {goals.weight}</IonText></IonItem>
-        </IonList>
-    
-      </IonContent>
+      <div className="background">
+        <div className="userDetails">
+          <p>Enter User Details</p>
+          <IonList>
+            <IonItem>
+              <IonLabel>Enter Name: </IonLabel>
+              <IonInput
+                value={name}
+                placeholder="eg. Spongebob"
+                onIonChange={(e) => setName(e.detail.value!)}
+              ></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Enter Age: </IonLabel>
+              <IonInput
+                type="number"
+                value={age}
+                placeholder="eg. 25"
+                onIonChange={(e) => setAge(parseInt(e.detail.value!, 10))}
+              ></IonInput>
+            </IonItem>
+          </IonList>
+          <IonButton expand="full" onClick={() => updateUserDetails(name, age)}>
+            <IonLabel>Save Details</IonLabel>
+          </IonButton>
+          <p>Your Goals</p>
+        </div>
+        <div className="dailyGoals">
+          <p>
+            These are the goals you have set for yourself.<br></br>Click on SET
+            GOALS to create new goals.
+          </p>
+          <IonList>
+            <IonItem>
+              <IonText>Daily Calorie Goal: {goals.cal}</IonText>
+            </IonItem>
+            <IonItem>
+              <IonText>Daily Distance Goal: {goals.dist}</IonText>
+            </IonItem>
+            <IonItem>
+              <IonText>Daily Steps Goal: {goals.step}</IonText>
+            </IonItem>
+            <IonItem>
+              <IonText>Weight Goal: {goals.weight}</IonText>
+            </IonItem>
+          </IonList>
+          <IonButton
+            expand="full"
+            onClick={() => dynamicNavigate("/SetGoalScreen", "forward", router)}
+          >
+            <IonLabel>Set Goals</IonLabel>
+          </IonButton>
+        </div>
+      </div>
+       </IonContent>
     </IonPage>
   );
 };

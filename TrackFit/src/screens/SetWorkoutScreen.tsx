@@ -24,9 +24,7 @@ const SetWorkoutScreen: React.FC = () => {
       <IonContent fullscreen>
         <ExploreContainer name="Tab 2 page" />
         <IonButton
-          onClick={() => {
-            dynamicNavigate("/InWorkoutScreen", "forward", router);
-          }}
+          onClick={() => dynamicNavigate("/InWorkoutScreen", "forward", router)}
         >
           <IonLabel>Start</IonLabel>
         </IonButton>

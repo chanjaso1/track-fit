@@ -1,0 +1,29 @@
+/** 
+* This file provides the styling for the User Profile screen.
+*/
+.background {
+  flex: 1;
+  height: 100%;
+}
+
+.dailyGoals {
+  flex: 0.5;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.dailyGoals p {
+  font-size: medium;
+  font-weight: 300;
+}
+
+.userDetails {
+  flex: 0.5;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.userDetails p {
+  font-size: x-large;
+  font-weight: bold;
+}
