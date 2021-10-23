@@ -27,7 +27,6 @@ const Stopwatch: React.FC = () => {
   const [timerRunning, setTimerRunning] = useState(false);
   const isRecordingContext = useIsRecording();
   const stepsContext = useStepsContext();
-  const [steps, setSteps] = useState("Steps: " + stepsContext.currentSteps);
 
   useEffect(() => {
     countUp();
@@ -60,7 +59,6 @@ const Stopwatch: React.FC = () => {
 
       // format the time
       setTime(formatTime());
-      setSteps("Steps: " + stepsContext.currentSteps);
       return time;
     }, 1000);
   }
@@ -100,6 +98,7 @@ const Stopwatch: React.FC = () => {
             expand="full"
             onClick={() => {
               setTimerRunning(true);
+              stepsContext.latestWorkoutSteps = 0;
               startCount(stepsContext, isRecordingContext);
               isRecordingContext.isRecording = true;
             }}

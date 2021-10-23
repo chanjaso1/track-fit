@@ -5,14 +5,17 @@ import { useStepsContext } from "../functions/Context";
 //props: { children: React.ReactNode }
 export const TextStats = () => {
   const stepsContext = useStepsContext();
-  const [steps, setSteps] = useState("Steps: " + stepsContext.currentSteps);
+  const [totalSteps, setTotalSteps] = useState("Total Steps: 0");
+  const [steps, setSteps] = useState(
+    "Steps: " + stepsContext.latestWorkoutSteps
+  );
   const [distance, setDistance] = useState(
-    "Distance Travelled: " + stepsContext.currentSteps * 0.74
+    "Distance Travelled: " + stepsContext.latestWorkoutSteps * 0.74
   );
   const [caloriesBurned, setCaloriesBurned] = useState(
     "Calories Burned: " +
-      (stepsContext.currentSteps % 16.9 > 0
-        ? stepsContext.currentSteps % 16.9
+      (stepsContext.latestWorkoutSteps % 16.9 > 0
+        ? stepsContext.latestWorkoutSteps % 16.9
         : 0)
   );
 
@@ -20,16 +23,17 @@ export const TextStats = () => {
    * On a step, update the steps taken, the distance travelled and the calories burned.
    */
   useEffect(() => {
-    setSteps("Steps: " + stepsContext.currentSteps);
+    setTotalSteps("Total Steps: " + stepsContext.currentSteps);
+    setSteps("Steps: " + stepsContext.latestWorkoutSteps);
     setDistance(
       "Distance Travelled: " +
-        Math.floor(stepsContext.currentSteps * 0.74) +
+        Math.floor(stepsContext.latestWorkoutSteps * 0.74) +
         "m"
     );
 
     setCaloriesBurned(
       "Calories Burned: " +
-        Math.floor(stepsContext.currentSteps / 16.9) +
+        Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
         "kcal"
     );
   }, [stepsContext.currentSteps]);
@@ -38,6 +42,9 @@ export const TextStats = () => {
 
   return (
     <>
+      <IonRow>
+        <IonText>{totalSteps}</IonText>
+      </IonRow>
       <IonRow>
         <IonText>{steps}</IonText>
       </IonRow>

@@ -14,9 +14,11 @@ import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
 import Stopwatch from "../components/Stopwatch";
 import Dropdown from "../components/Dropdown";
+import { useStepsContext } from "../functions/Context";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
+  const stepsContext = useStepsContext();
 
   return (
     <IonPage>

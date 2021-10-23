@@ -31,7 +31,8 @@ export const startCount = (
       if (isStep(stepsContext)) {
         //Make a new step if it is a step
         stepsContext.currentSteps = stepsContext.currentSteps + 1;
-        console.log("new steps!!: " + stepsContext.currentSteps);
+        stepsContext.latestWorkoutSteps = stepsContext.latestWorkoutSteps + 1;
+        console.log("new steps!!: " + stepsContext.latestWorkoutSteps);
       }
       stepsContext.firstStep = stepsContext.secondStep;
       stepsContext.secondStep = acceleration.x;
