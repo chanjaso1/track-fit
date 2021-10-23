@@ -83,22 +83,12 @@ const Stopwatch: React.FC = () => {
       </IonRow>
       <IonRow>
         <IonCol>
-          <IonButton
-            expand="full"
-            onClick={() => {
-              setTimerRunning(true);
-            }}
-          >
+          <IonButton expand="full" onClick={() => setTimerRunning(true)}>
             <IonLabel>START</IonLabel>
           </IonButton>
         </IonCol>
         <IonCol>
-          <IonButton
-            expand="full"
-            onClick={() => {
-              setTimerRunning(false);
-            }}
-          >
+          <IonButton expand="full" onClick={() => setTimerRunning(false)}>
             <IonLabel>STOP</IonLabel>
           </IonButton>
         </IonCol>
