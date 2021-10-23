@@ -18,19 +18,17 @@ const Dropdown = () => {
   const [activity, setActivity] = useState();
 
   return (
-    <IonList>
-      <IonItem>
-        <IonLabel>Activity</IonLabel>
-        <IonSelect
-          value={activity}
-          placeholder="Select an activity"
-          onIonChange={(e) => setActivity(e.detail.value)}
-        >
-          <IonSelectOption value="walking">Walking</IonSelectOption>
-          <IonSelectOption value="running">Running</IonSelectOption>
-        </IonSelect>
-      </IonItem>
-    </IonList>
+    <IonItem>
+      <IonLabel>Activity</IonLabel>
+      <IonSelect
+        value={activity}
+        placeholder="Select an activity"
+        onIonChange={(e) => setActivity(e.detail.value)}
+      >
+        <IonSelectOption value="walking">Walking</IonSelectOption>
+        <IonSelectOption value="running">Running</IonSelectOption>
+      </IonSelect>
+    </IonItem>
   );
 };
 
