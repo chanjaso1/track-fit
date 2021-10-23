@@ -81,6 +81,7 @@ const SetDailyWeightScreen: React.FC = () => {
                       writeWeight(date, number);
                       weights.splice(-1, number);
                       setWeights([...weights, number]);
+                      alert("Successfully saved today's weight!");
                     }
                   }}
                 >
