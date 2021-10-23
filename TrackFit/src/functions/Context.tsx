@@ -12,58 +12,58 @@ export interface GeneralContextValue {
 
 export interface stepsContextInterface {
   currentSteps: number;
+  latestWorkoutSteps: number;
   firstStep: number;
   secondStep: number;
 }
-const isRecordingContext = createContext(false as boolean);
-const setIsRecordingContext = createContext(
-  {} as React.Dispatch<React.SetStateAction<boolean>>
-);
+
+export interface isRecordingInterface {
+  isRecording: boolean;
+}
+const isRecordingContext = createContext({} as isRecordingInterface);
 
 const stepsContext = createContext({} as stepsContextInterface);
 export function useIsRecording() {
   return useContext(isRecordingContext);
 }
 
-export function useSetIsRecording() {
-  return useContext(setIsRecordingContext);
-}
-
 export function useStepsContext() {
   return useContext(stepsContext);
 }
 
+const stepObject: any = {
+  currentSteps: 0,
+  latestWorkoutSteps: 0,
+  firstStep: -99,
+  secondStep: -99,
+};
+
+const isRecordingObject: any = {
+  isRecording: false,
+};
+
 export default function ContextProvider(props: { children: React.ReactNode }) {
-  const [initialIsRecording, setInitialIsRecording] = useState(false);
   const [initialWeight, setInitialWeight] = useState([]);
   const [initialGoals, setInitialGoals] = useState({
-      cal: 0,
-      dist: 0,
-      step: 0,
-      weight: 0
+    cal: 0,
+    dist: 0,
+    step: 0,
+    weight: 0,
   });
-
-  const stepObject: any = {
-    currentSteps: 0,
-    firstStep: -99,
-    secondStep: -99,
-  };
 
   return (
     <goalsContext.Provider value={initialGoals}>
-        <setGoalsContext.Provider value={setInitialGoals}>
+      <setGoalsContext.Provider value={setInitialGoals}>
         <weightContext.Provider value={initialWeight}>
-        <setWeightContext.Provider value={setInitialWeight}>
-        <isRecordingContext.Provider value={initialIsRecording}>
-          <setIsRecordingContext.Provider value={setInitialIsRecording}>
-            <stepsContext.Provider value={stepObject}>
-              {props.children}
-            </stepsContext.Provider>
-          </setIsRecordingContext.Provider>
-        </isRecordingContext.Provider>
-        </setWeightContext.Provider>
+          <setWeightContext.Provider value={setInitialWeight}>
+            <isRecordingContext.Provider value={isRecordingObject}>
+              <stepsContext.Provider value={stepObject}>
+                {props.children}
+              </stepsContext.Provider>
+            </isRecordingContext.Provider>
+          </setWeightContext.Provider>
         </weightContext.Provider>
-        </setGoalsContext.Provider>
+      </setGoalsContext.Provider>
     </goalsContext.Provider>
   );
 }
@@ -83,11 +83,11 @@ export function useSetWeightContext() {
 
 const goalsContext = createContext({} as any);
 const setGoalsContext = createContext(
-    {} as React.Dispatch<React.SetStateAction<any>>
+  {} as React.Dispatch<React.SetStateAction<any>>
 );
 export function useGoalsContext() {
-    return useContext(goalsContext);
+  return useContext(goalsContext);
 }
 export function useSetGoalsContext() {
-    return useContext(setGoalsContext);
+  return useContext(setGoalsContext);
 }

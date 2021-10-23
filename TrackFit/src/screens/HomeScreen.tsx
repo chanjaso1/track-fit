@@ -2,8 +2,10 @@ import {
   IonButton,
   IonContent,
   IonHeader,
+  IonItem,
   IonLabel,
   IonPage,
+  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -16,11 +18,17 @@ import ActivateVibration from "../components/Vibration";
 import { dynamicNavigate } from "../functions/navigation";
 
 import { getData } from "../data/utilities/getData";
-import { getWeek } from "../data/utilities/Firestore";
+import ProgressRing from "../components/ProgressRing";
+import { useGoalsContext, useSetGoalsContext, useStepsContext } from "../functions/Context";
+import { useState } from "react";
 
 const HomeScreen: React.FC = () => {
   const router = useIonRouter();
   let vibration = new ActivateVibration(new Vibration());
+
+  const goals = useGoalsContext();
+  const setGoals = useSetGoalsContext();
+  const stepContext = useStepsContext();
 
   return (
     <IonPage>
@@ -30,21 +38,11 @@ const HomeScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
-        <IonButton
-          onClick={() => {
-            console.log("clicking");
-            vibration.vibrate();
-            getData();
-          }}
-        >
-          <IonLabel>click here</IonLabel>
-        </IonButton>
+        
+      <ProgressRing vals={[stepContext.currentSteps, goals.step > stepContext.currentSteps ? goals.step-stepContext.currentSteps : 0 ]} labs={["Done", "Not Done"]}/>
+     <div style={{textAlign: "center", backgroundColor: '#888888'}}><IonText >Steps: {stepContext.currentSteps} out of {goals.step}</IonText></div>
+        
+
       </IonContent>
     </IonPage>
   );
