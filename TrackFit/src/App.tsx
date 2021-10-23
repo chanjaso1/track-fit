@@ -9,7 +9,12 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
+import {
+  home,
+  statsChartOutline,
+  barbellOutline,
+  personCircle,
+} from "ionicons/icons";
 import ContextProvider from "./functions/Context";
 
 /* Screens */
@@ -80,19 +85,19 @@ const App: React.FC = () => (
           {/** Bottom Menu */}
           <IonTabBar slot="bottom">
             <IonTabButton tab="home" href="/HomeScreen">
-              <IonIcon icon={ellipse} />
+              <IonIcon icon={home} />
               <IonLabel>Home</IonLabel>
             </IonTabButton>
             <IonTabButton tab="stats" href="/StatsScreen">
-              <IonIcon icon={triangle} />
+              <IonIcon icon={statsChartOutline} />
               <IonLabel>Stats</IonLabel>
             </IonTabButton>
             <IonTabButton tab="userProfile" href="/UserProfileScreen">
-              <IonIcon icon={ellipse} />
+              <IonIcon icon={personCircle} />
               <IonLabel>User Profile</IonLabel>
             </IonTabButton>
             <IonTabButton tab="setWorkout" href="/setWorkoutScreen">
-              <IonIcon icon={square} />
+              <IonIcon icon={barbellOutline} />
               <IonLabel>Workout</IonLabel>
             </IonTabButton>
           </IonTabBar>
