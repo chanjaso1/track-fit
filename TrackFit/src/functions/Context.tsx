@@ -31,6 +31,17 @@ export function useStepsContext() {
   return useContext(stepsContext);
 }
 
+const stepObject: any = {
+  currentSteps: 0,
+  latestWorkoutSteps: 0,
+  firstStep: -99,
+  secondStep: -99,
+};
+
+const isRecordingObject: any = {
+  isRecording: false,
+};
+
 export default function ContextProvider(props: { children: React.ReactNode }) {
   const [initialWeight, setInitialWeight] = useState([]);
   const [initialGoals, setInitialGoals] = useState({
@@ -39,17 +50,6 @@ export default function ContextProvider(props: { children: React.ReactNode }) {
     step: 0,
     weight: 0,
   });
-
-  const stepObject: any = {
-    currentSteps: 0,
-    latestWorkoutSteps: 0,
-    firstStep: -99,
-    secondStep: -99,
-  };
-
-  const isRecordingObject: any = {
-    isRecording: false,
-  };
 
   return (
     <goalsContext.Provider value={initialGoals}>
