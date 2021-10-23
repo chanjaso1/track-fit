@@ -33,3 +33,17 @@
   font-weight: bold;
   text-align: center;
 }
+
+.workoutStats {
+  flex: 1;
+  flex-direction: column;
+  align-content: stretch;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.workoutStats p {
+  font-size: medium;
+  font-weight: normal;
+}
