@@ -16,9 +16,8 @@ import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
 import Stopwatch from "../components/Stopwatch";
 import { useStepsContext } from "../functions/Context";
-import { TextStats } from "../components/TextStats";
 
-import "../styles/DefaultScreen.css";
+import "../styles/styles.css";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();

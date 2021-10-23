@@ -18,7 +18,7 @@ import { useIonRouter } from "@ionic/react";
 import { useState } from "react";
 import Dropdown from "../components/Dropdown";
 
-import "../styles/DefaultScreen.css";
+import "../styles/styles.css";
 
 const SetWorkoutScreen: React.FC = () => {
   const router = useIonRouter();

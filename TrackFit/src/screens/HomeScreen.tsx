@@ -19,7 +19,11 @@ import { dynamicNavigate } from "../functions/navigation";
 
 import { getData } from "../data/utilities/getData";
 import ProgressRing from "../components/ProgressRing";
-import { useGoalsContext, useSetGoalsContext, useStepsContext } from "../functions/Context";
+import {
+  useGoalsContext,
+  useSetGoalsContext,
+  useStepsContext,
+} from "../functions/Context";
 import { useState } from "react";
 
 const HomeScreen: React.FC = () => {
@@ -38,11 +42,20 @@ const HomeScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        
-      <ProgressRing vals={[stepContext.currentSteps, goals.step > stepContext.currentSteps ? goals.step-stepContext.currentSteps : 0 ]} labs={["Done", "Not Done"]}/>
-     <div style={{textAlign: "center", backgroundColor: '#888888'}}><IonText >Steps: {stepContext.currentSteps} out of {goals.step}</IonText></div>
-        
-
+        <ProgressRing
+          vals={[
+            stepContext.currentSteps,
+            goals.step > stepContext.currentSteps
+              ? goals.step - stepContext.currentSteps
+              : 0,
+          ]}
+          labs={["Done", "Not Done"]}
+        />
+        <div style={{ textAlign: "center", backgroundColor: "#888888" }}>
+          <IonText>
+            Steps: {stepContext.currentSteps} out of {goals.step}
+          </IonText>
+        </div>
       </IonContent>
     </IonPage>
   );

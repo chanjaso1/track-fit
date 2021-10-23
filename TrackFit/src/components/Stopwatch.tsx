@@ -6,20 +6,13 @@
  * https://www.digitalocean.com/community/tutorials/react-countdown-timer-react-hooks
  */
 import React, { useEffect, useState } from "react";
-import {
-  IonButton,
-  IonGrid,
-  IonLabel,
-  IonRow,
-  IonCol,
-  IonText,
-} from "@ionic/react";
+import { IonButton, IonGrid, IonLabel, IonRow, IonCol } from "@ionic/react";
 import { Subscription } from "rxjs";
 import { useIsRecording, useStepsContext } from "../functions/Context";
 import { startCount } from "../functions/DeviceMotion";
 import { TextStats } from "./TextStats";
 
-import "../styles/DefaultScreen.css";
+import "../styles/styles.css";
 
 const Stopwatch: React.FC = () => {
   const [hours, setHour] = useState(0);
@@ -91,11 +84,6 @@ const Stopwatch: React.FC = () => {
           </div>
         </IonCol>
       </IonRow>
-      {/* <IonRow>
-        <IonCol>
-          <TextStats />
-        </IonCol>
-      </IonRow> */}
       <IonRow>
         <IonCol>
           <IonButton

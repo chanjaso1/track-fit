@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import { getWeek } from "../data/utilities/Firestore";
 import { useSetWeightContext, useWeightContext } from "../functions/Context";
 
-import "../styles/DefaultScreen.css";
+import "../styles/styles.css";
 
 const StatsScreen: React.FC = () => {
   const router = useIonRouter(); //	Initializes the router

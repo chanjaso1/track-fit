@@ -2,7 +2,7 @@ import { IonRow } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useStepsContext } from "../functions/Context";
 
-import "../styles/DefaultScreen.css";
+import "../styles/styles.css";
 
 //props: { children: React.ReactNode }
 export const TextStats = () => {

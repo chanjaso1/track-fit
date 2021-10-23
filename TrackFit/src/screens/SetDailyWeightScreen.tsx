@@ -19,7 +19,7 @@ import { useIonRouter } from "@ionic/react";
 import { writeWeight } from "../data/utilities/Firestore";
 import { useSetWeightContext, useWeightContext } from "../functions/Context";
 
-import "../styles/DefaultScreen.css";
+import "../styles/styles.css";
 
 const SetDailyWeightScreen: React.FC = () => {
   const router = useIonRouter();

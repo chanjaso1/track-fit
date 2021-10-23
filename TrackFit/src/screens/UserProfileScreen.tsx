@@ -26,7 +26,7 @@ import { useState } from "react";
 import { updateUserDetails } from "../data/utilities/Firestore";
 import { useGoalsContext, useSetGoalsContext } from "../functions/Context";
 
-import "../styles/UserProfileScreen.css";
+import "../styles/styles.css";
 
 const UserProfileScreen: React.FC = () => {
   const router = useIonRouter(); // Initializes the router
@@ -46,7 +46,7 @@ const UserProfileScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div className="background">
+        <div className="userProfileBackground">
           <div className="userDetails">
             <h1>Enter User Details</h1>
             <IonList>

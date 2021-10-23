@@ -18,7 +18,7 @@ import {
 import { useState } from "react";
 import { useGoalsContext, useSetGoalsContext } from "../functions/Context";
 
-import "../styles/DefaultScreen.css";
+import "../styles/styles.css";
 
 const SetGoalScreen: React.FC = () => {
   const [calorie, setCalorie] = useState<number>();
