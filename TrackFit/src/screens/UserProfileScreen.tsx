@@ -19,18 +19,16 @@ import {
   IonList,
   IonItem,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
 import { useState } from "react";
+import { updateUserDetails } from "../data/utilities/Firestore";
 
 const UserProfileScreen: React.FC = () => {
-  //	Initializing our router
-  const router = useIonRouter();
+  const router = useIonRouter();  // Initializes the router
 
-  const [name, setName] = useState<string>();
-  const [age, setAge] = useState<number>();
-  const [weight, setWeight] = useState<number>();
+  const [name, setName] = useState<string>("");
+  const [age, setAge] = useState<number>(NaN);
 
   return (
     <IonPage>
@@ -60,21 +58,11 @@ const UserProfileScreen: React.FC = () => {
               onIonChange={(e) => setAge(parseInt(e.detail.value!, 10))}
             ></IonInput>
           </IonItem>
-          <IonItem>
-            <IonLabel>Enter Weight (kg): </IonLabel>
-            <IonInput
-              type="number"
-              value={weight}
-              placeholder="eg. 50"
-              onIonChange={(e) => setWeight(parseInt(e.detail.value!, 10))}
-            ></IonInput>
-          </IonItem>
         </IonList>
-        <IonButton
-          onClick={() => {
-            dynamicNavigate("/SetGoalScreen", "forward", router);
-          }}
-        >
+        <IonButton onClick={() => updateUserDetails(name, age)}>
+          <IonLabel>Save Details</IonLabel>
+        </IonButton>
+        <IonButton onClick={() => dynamicNavigate("/SetGoalScreen", "forward", router)} >
           <IonLabel>Set Goals</IonLabel>
         </IonButton>
       </IonContent>
