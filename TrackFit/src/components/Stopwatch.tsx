@@ -17,6 +17,7 @@ import {
 import { Subscription } from "rxjs";
 import { useIsRecording, useStepsContext } from "../functions/Context";
 import { startCount } from "../functions/DeviceMotion";
+import { TextStats } from "./TextStats";
 
 const Stopwatch: React.FC = () => {
   const [hours, setHour] = useState(0);
@@ -24,12 +25,9 @@ const Stopwatch: React.FC = () => {
   const [seconds, setSecond] = useState(0);
   const [time, setTime] = useState("00:00:00");
   const [timerRunning, setTimerRunning] = useState(false);
-  // const[subscriptions ]
-
-  let subscriptions = [] as Subscription[];
   const isRecordingContext = useIsRecording();
-  // const setIsRecording = useSetIsRecording();
   const stepsContext = useStepsContext();
+  const [steps, setSteps] = useState("Steps: " + stepsContext.currentSteps);
 
   useEffect(() => {
     countUp();
@@ -62,6 +60,7 @@ const Stopwatch: React.FC = () => {
 
       // format the time
       setTime(formatTime());
+      setSteps("Steps: " + stepsContext.currentSteps);
       return time;
     }, 1000);
   }
@@ -88,6 +87,11 @@ const Stopwatch: React.FC = () => {
       <IonRow>
         <IonCol>
           <IonText>{time}</IonText>
+        </IonCol>
+      </IonRow>
+      <IonRow>
+        <IonCol>
+          <TextStats />
         </IonCol>
       </IonRow>
       <IonRow>

@@ -7,7 +7,6 @@ import {
   DeviceMotionAccelerationData,
   DeviceMotionAccelerometerOptions,
 } from "@ionic-native/device-motion";
-import { Subscription } from "rxjs";
 import { isRecordingInterface, stepsContextInterface } from "./Context";
 
 /**
