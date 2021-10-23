@@ -44,12 +44,12 @@ const StatsScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Stats" />
-        <IonButton onClick={() => dynamicNavigate("/setDailyWeightScreen", "forward", router)}>
-            <IonLabel>Set Today's weight</IonLabel>
-          </IonButton>
           <IonItem>
               <LineChart weights={weights} days={dates} />
           </IonItem>
+          <IonButton onClick={() => dynamicNavigate("/setDailyWeightScreen", "forward", router)}>
+            <IonLabel>Set Today's weight</IonLabel>
+          </IonButton>
       </IonContent>
     </IonPage>
   );
