@@ -36,6 +36,12 @@ export function useStepsContext() {
 export default function ContextProvider(props: { children: React.ReactNode }) {
   const [initialIsRecording, setInitialIsRecording] = useState(false);
   const [initialWeight, setInitialWeight] = useState([]);
+  const [initialGoals, setInitialGoals] = useState({
+      cal: 0,
+      dist: 0,
+      step: 0,
+      weight: 0
+  });
 
   const stepObject: any = {
     currentSteps: 0,
@@ -44,8 +50,10 @@ export default function ContextProvider(props: { children: React.ReactNode }) {
   };
 
   return (
-    <weightContext.Provider value={initialWeight}>
-      <setWeightContext.Provider value={setInitialWeight}>
+    <goalsContext.Provider value={initialGoals}>
+        <setGoalsContext.Provider value={setInitialGoals}>
+        <weightContext.Provider value={initialWeight}>
+        <setWeightContext.Provider value={setInitialWeight}>
         <isRecordingContext.Provider value={initialIsRecording}>
           <setIsRecordingContext.Provider value={setInitialIsRecording}>
             <stepsContext.Provider value={stepObject}>
@@ -53,8 +61,10 @@ export default function ContextProvider(props: { children: React.ReactNode }) {
             </stepsContext.Provider>
           </setIsRecordingContext.Provider>
         </isRecordingContext.Provider>
-      </setWeightContext.Provider>
-    </weightContext.Provider>
+        </setWeightContext.Provider>
+        </weightContext.Provider>
+        </setGoalsContext.Provider>
+    </goalsContext.Provider>
   );
 }
 
@@ -67,4 +77,17 @@ export function useWeightContext() {
 }
 export function useSetWeightContext() {
   return useContext(setWeightContext);
+}
+
+// --
+
+const goalsContext = createContext({} as any);
+const setGoalsContext = createContext(
+    {} as React.Dispatch<React.SetStateAction<any>>
+);
+export function useGoalsContext() {
+    return useContext(goalsContext);
+}
+export function useSetGoalsContext() {
+    return useContext(setGoalsContext);
 }

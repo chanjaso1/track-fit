@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAlert, IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonModal, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
 import { useIonRouter } from "@ionic/react";
 import ExploreContainer from '../components/ExploreContainer';
 import { dynamicNavigate } from '../functions/navigation';
@@ -35,9 +35,13 @@ const SetDailyWeightScreen: React.FC = () => {
         <IonText>{date}</IonText>
 
         <IonButton onClick={() => {
-            writeWeight(date, number);
-            weights.splice(-1, number);
-            setWeights([...weights, number]);
+            if(number == null) {
+                alert("Please input a number!")
+            } else {
+                writeWeight(date, number);
+                weights.splice(-1, number);
+                setWeights([...weights, number]);
+            }
             }}>
           <IonLabel>Register Weight</IonLabel>
         </IonButton>
