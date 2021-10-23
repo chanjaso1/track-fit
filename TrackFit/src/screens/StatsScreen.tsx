@@ -10,7 +10,6 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonText,
 } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
 import { useIonRouter } from "@ionic/react";

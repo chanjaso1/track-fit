@@ -9,7 +9,6 @@ import {
   IonToolbar,
   IonButtons,
   IonInput,
-  IonText,
   IonList,
   IonItem,
   IonGrid,
@@ -118,6 +117,7 @@ const SetGoalScreen: React.FC = () => {
                         weight: goalWeight,
                       };
                       setGoals(out);
+                      alert("Successfully saved your goals!");
                     }
                   }}
                 >

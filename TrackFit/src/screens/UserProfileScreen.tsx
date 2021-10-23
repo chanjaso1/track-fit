@@ -19,9 +19,6 @@ import {
   IonList,
   IonItem,
   IonText,
-  IonGrid,
-  IonRow,
-  IonCol,
 } from "@ionic/react";
 import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
@@ -48,7 +45,7 @@ const UserProfileScreen: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-     <IonContent fullscreen>
+      <IonContent fullscreen>
         <div className="background">
           <div className="userDetails">
             <h1>Enter User Details</h1>
@@ -73,7 +70,10 @@ const UserProfileScreen: React.FC = () => {
             </IonList>
             <IonButton
               expand="full"
-              onClick={() => updateUserDetails(name, age)}
+              onClick={() => {
+                updateUserDetails(name, age);
+                alert("Successfully saved your details!");
+              }}
             >
               <IonLabel>Save Details</IonLabel>
             </IonButton>
@@ -110,7 +110,7 @@ const UserProfileScreen: React.FC = () => {
         </div>
       </IonContent>
     </IonPage>
-  ); 
+  );
 };
 
 export default UserProfileScreen;
