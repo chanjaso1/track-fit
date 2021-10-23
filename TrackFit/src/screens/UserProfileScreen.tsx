@@ -18,17 +18,21 @@ import {
   IonInput,
   IonList,
   IonItem,
+  IonText,
 } from "@ionic/react";
 import { useIonRouter } from "@ionic/react";
 import { dynamicNavigate } from "../functions/navigation";
 import { useState } from "react";
 import { updateUserDetails } from "../data/utilities/Firestore";
+import { useGoalsContext, useSetGoalsContext } from "../functions/Context";
 
 const UserProfileScreen: React.FC = () => {
   const router = useIonRouter();  // Initializes the router
 
   const [name, setName] = useState<string>("");
   const [age, setAge] = useState<number>(NaN);
+  const goals = useGoalsContext();
+  const setGoals = useSetGoalsContext();
 
   return (
     <IonPage>
@@ -65,6 +69,14 @@ const UserProfileScreen: React.FC = () => {
         <IonButton onClick={() => dynamicNavigate("/SetGoalScreen", "forward", router)} >
           <IonLabel>Set Goals</IonLabel>
         </IonButton>
+
+        <IonList>
+            <IonItem><IonText>Daily Calorie Goal: {goals.cal}</IonText></IonItem>
+            <IonItem><IonText>Daily Distance Goal: {goals.dist}</IonText></IonItem>
+            <IonItem><IonText>Daily Steps Goal: {goals.step}</IonText></IonItem>
+            <IonItem><IonText>Weight Goal: {goals.weight}</IonText></IonItem>
+        </IonList>
+    
       </IonContent>
     </IonPage>
   );
