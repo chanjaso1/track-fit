@@ -5,14 +5,8 @@
  * Reference:
  * https://ionicframework.com/docs/v3/api/components/select/Select/
  */
-import React, { useState } from "react";
-import {
-  IonItem,
-  IonLabel,
-  IonList,
-  IonSelect,
-  IonSelectOption,
-} from "@ionic/react";
+import { useState } from "react";
+import { IonItem, IonLabel, IonSelect, IonSelectOption } from "@ionic/react";
 
 const Dropdown = () => {
   const [activity, setActivity] = useState();
@@ -22,7 +16,7 @@ const Dropdown = () => {
       <IonLabel>Activity</IonLabel>
       <IonSelect
         value={activity}
-        placeholder="Select an activity"
+        placeholder="Select activity"
         onIonChange={(e) => setActivity(e.detail.value)}
       >
         <IonSelectOption value="walking">Walking</IonSelectOption>
