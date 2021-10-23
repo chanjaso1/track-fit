@@ -19,6 +19,8 @@ import {
   useStepsContext,
 } from "../functions/Context";
 import { Subscription } from "rxjs";
+import Stopwatch from "../components/Stopwatch";
+import Dropdown from "../components/Dropdown";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
@@ -44,6 +46,8 @@ const InWorkoutScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
+        <Stopwatch />
+        <Dropdown />
         <IonButton
           onClick={() => {
             dynamicNavigate("/ResultsScreen", "forward", router);

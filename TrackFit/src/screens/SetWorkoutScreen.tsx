@@ -10,7 +10,6 @@ import {
 import ExploreContainer from "../components/ExploreContainer";
 import { dynamicNavigate } from "../functions/navigation";
 import { useIonRouter } from "@ionic/react";
-import Stopwatch from "../components/Stopwatch";
 
 const SetWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
@@ -24,7 +23,6 @@ const SetWorkoutScreen: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <ExploreContainer name="Tab 2 page" />
-        <Stopwatch />
         <IonButton
           onClick={() => {
             dynamicNavigate("/InWorkoutScreen", "forward", router);
