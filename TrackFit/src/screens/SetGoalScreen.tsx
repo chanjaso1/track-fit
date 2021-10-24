@@ -16,6 +16,7 @@ import {
   IonCol,
 } from "@ionic/react";
 import { useState } from "react";
+import { updateDailyGoals } from "../data/utilities/Firestore";
 import { useGoalsContext, useSetGoalsContext } from "../functions/Context";
 
 import "../styles/styles.css";
@@ -117,6 +118,7 @@ const SetGoalScreen: React.FC = () => {
                         weight: goalWeight,
                       };
                       setGoals(out);
+                      updateDailyGoals(out.cal, out.dist, out.step, out.weight);
                       alert("Successfully saved your goals!");
                     }
                   }}
