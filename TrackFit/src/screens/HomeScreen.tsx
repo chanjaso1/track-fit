@@ -24,7 +24,8 @@ import {
   useSetGoalsContext,
   useStepsContext,
 } from "../functions/Context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getGoals, getProgress, setProgress } from "../data/utilities/Firestore";
 
 const HomeScreen: React.FC = () => {
   const router = useIonRouter();
@@ -33,6 +34,20 @@ const HomeScreen: React.FC = () => {
   const goals = useGoalsContext();
   const setGoals = useSetGoalsContext();
   const stepContext = useStepsContext();
+
+  useEffect(() => {
+    getGoals().then(function(result) {
+        if (result !== null) {
+            setGoals(result);
+          } else {
+            setGoals({
+                cal: 0, dist: 0, step: 0, weight: 0})
+    }})
+    getProgress().then(
+        function(result) {
+            stepContext.currentSteps = result;
+    })
+  }, []);
 
   return (
     <IonPage>
