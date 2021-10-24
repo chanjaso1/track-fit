@@ -72,3 +72,30 @@
   font-size: x-large;
   font-weight: bold;
 }
+
+.homePage {
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.homePage h1 {
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+.homePage h2 {
+  font-size: medium;
+  font-weight: 300;
+  text-align: center;
+}
+
+.homePage p {
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+}

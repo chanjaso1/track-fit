@@ -1,23 +1,17 @@
 import {
-  IonButton,
   IonContent,
   IonHeader,
-  IonItem,
-  IonLabel,
   IonPage,
-  IonText,
   IonTitle,
   IonToolbar,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonItem,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 import { useIonRouter } from "@ionic/react";
-import { Vibration } from "@ionic-native/vibration/ngx";
-
-import ActivateVibration from "../components/Vibration";
-
-import { dynamicNavigate } from "../functions/navigation";
-
-import { getData } from "../data/utilities/getData";
+// import { Vibration } from "@ionic-native/vibration/ngx";
+// import ActivateVibration from "../components/Vibration";
 import ProgressRing from "../components/ProgressRing";
 import {
   useGoalsContext,
@@ -25,43 +19,51 @@ import {
   useStepsContext,
 } from "../functions/Context";
 import { useEffect, useState } from "react";
-import { getGoals, getProgress, setProgress } from "../data/utilities/Firestore";
+import { getGoals, getProgress } from "../data/utilities/Firestore";
+
+import "../styles/styles.css";
 
 const HomeScreen: React.FC = () => {
   const router = useIonRouter();
-  let vibration = new ActivateVibration(new Vibration());
+  // let vibration = new ActivateVibration(new Vibration());
 
   const goals = useGoalsContext();
   const setGoals = useSetGoalsContext();
   const stepContext = useStepsContext();
   // Using stepContext.currentSteps etc directly in views sometimes don't cause a rerender, so use hook instead.
-  const [prog, setProg] = useState<number>(0); 
+  const [prog, setProg] = useState<number>(0);
   const [run, setRun] = useState<number>(0);
   const [walk, setWalk] = useState<number>(0);
+  const [arbi, setArbi] = useState<boolean>(false);
 
   // Synchronise stepContext's passed daily progress variables with Firestore when opening app
   useEffect(() => {
-    getProgress().then(
-        function(result) {
-            stepContext.currentSteps = result.r + result.w;
-            stepContext.currentRunningSteps = result.r;
-            stepContext.currentWalkingSteps = result.w;
-    })
-    getGoals().then(function(result) {
-        if (result !== null) {
-            setGoals(result);
-          } else {
-            setGoals({
-                cal: 0, dist: 0, step: 0, weight: 0})
-    }})
+    getProgress().then(function (result) {
+      stepContext.currentSteps = result.r + result.w;
+      stepContext.currentRunningSteps = result.r;
+      stepContext.currentWalkingSteps = result.w;
+      setArbi(!arbi);
+    });
+    getGoals().then(function (result) {
+      if (result !== null) {
+        setGoals(result);
+      } else {
+        setGoals({
+          cal: 0,
+          dist: 0,
+          step: 0,
+          weight: 0,
+        });
+      }
+    });
   }, []);
 
   // Using stepContext.currentSteps directly in views sometimes don't cause a rerender, so use hook instead.
   useEffect(() => {
-    setProg(stepContext.currentSteps)
-    setRun(stepContext.currentRunningSteps)
-    setWalk(stepContext.currentWalkingSteps)
-  }, [stepContext.currentSteps]);
+    setProg(stepContext.currentSteps);
+    setRun(stepContext.currentRunningSteps);
+    setWalk(stepContext.currentWalkingSteps);
+  }, [stepContext.currentSteps, arbi]);
 
   return (
     <IonPage>
@@ -70,25 +72,76 @@ const HomeScreen: React.FC = () => {
           <IonTitle>Home</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        {/* Steps Taken */}
-        <ProgressRing
-          vals={[prog, goals.step > prog ? goals.step - prog : 0]}
-          labs={["Steps Done", "Steps to Go"]}
-        />
-        <IonText>Steps: {prog} out of {goals.step}<br /></IonText>
-        {/* Calories Burned */}
-        <ProgressRing
-          vals={[(Math.floor(walk / 16.9)) + (Math.floor(run / 8.45)), goals.step > (Math.floor(walk / 16.9)) + (Math.floor(run / 8.45)) ? goals.step - (Math.floor(walk / 16.9)) + (Math.floor(run / 8.45)) : 0]}
-          labs={["Calories Burned", "Calories to Burn"]}
-        />
-        <IonText>Calories Burned: {(Math.floor(walk / 16.9)) + (Math.floor(run / 8.45))} out of {goals.cal}<br /></IonText>
-        {/* Distance Travelled */}
-        <ProgressRing
-          vals={[(Math.floor(walk * 0.74)) + (Math.floor(run * 1.651)), goals.step > (Math.floor(walk * 0.74)) + (Math.floor(run * 1.651)) ? goals.step - (Math.floor(walk * 0.74)) + (Math.floor(run * 1.651)) : 0]}
-          labs={["Distance Travelled", "Distance to Go"]}
-        />
-        <IonText>Distance Travelled: {(Math.floor(walk * 0.74)) + (Math.floor(run * 1.651))} out of {goals.dist}<br /> </IonText>
+      <IonContent
+        fullscreen
+        scrollEvents={true}
+        onIonScrollStart={() => {}}
+        onIonScroll={() => {}}
+        onIonScrollEnd={() => {}}
+      >
+        <IonGrid>
+          <div className="homePage">
+            <IonRow>
+              <IonCol>
+                <h1>TrackFit</h1>
+                <h2>
+                  Welcome to TrackFit!
+                  <br />
+                  View your current progress below.
+                  <IonItem />
+                </h2>
+              </IonCol>
+            </IonRow>
+            {/* Steps Taken */}
+            <p>
+              Steps: {prog} out of {goals.step}
+              <br />
+            </p>
+            <ProgressRing
+              vals={[prog, goals.step > prog ? goals.step - prog : 0]}
+              labs={["Steps Done", "Steps to Go"]}
+            />
+            <IonItem />
+            {/* Calories Burned */}
+            <p>
+              Calories Burned:{" "}
+              {Math.floor(walk / 16.9) + Math.floor(run / 8.45)} out of{" "}
+              {goals.cal}
+              <br />
+            </p>
+            <ProgressRing
+              vals={[
+                Math.floor(walk / 16.9) + Math.floor(run / 8.45),
+                goals.step > Math.floor(walk / 16.9) + Math.floor(run / 8.45)
+                  ? goals.step -
+                    Math.floor(walk / 16.9) +
+                    Math.floor(run / 8.45)
+                  : 0,
+              ]}
+              labs={["Calories Burned", "Calories to Burn"]}
+            />
+            <IonItem />
+            {/* Distance Travelled */}
+            <p>
+              Distance Travelled:{" "}
+              {Math.floor(walk * 0.74) + Math.floor(run * 1.651)} out of{" "}
+              {goals.dist}
+              <br />{" "}
+            </p>
+            <ProgressRing
+              vals={[
+                Math.floor(walk * 0.74) + Math.floor(run * 1.651),
+                goals.step > Math.floor(walk * 0.74) + Math.floor(run * 1.651)
+                  ? goals.step -
+                    Math.floor(walk * 0.74) +
+                    Math.floor(run * 1.651)
+                  : 0,
+              ]}
+              labs={["Distance Travelled", "Distance to Go"]}
+            />
+            <IonItem />
+          </div>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

@@ -8,7 +8,6 @@ import "../styles/styles.css";
 export const TextStats = () => {
   const stepsContext = useStepsContext();
   const workoutContext = useWorkoutContext();
-  const [totalSteps, setTotalSteps] = useState("Total Steps: 0");
   const [steps, setSteps] = useState(
     "Steps: " + stepsContext.latestWorkoutSteps
   );
@@ -23,7 +22,6 @@ export const TextStats = () => {
    * On a step, update the steps taken, the distance travelled and the calories burned.
    */
   useEffect(() => {
-    setTotalSteps("Total Steps: " + stepsContext.currentSteps);
     setSteps("Steps: " + stepsContext.latestWorkoutSteps);
 
     setDistance("Distance Travelled: " + getDistance(stepsContext) + "m");
@@ -59,7 +57,7 @@ export const TextStats = () => {
   return (
     <div className="workoutStats">
       <IonRow>
-        <p>{totalSteps}</p>
+        <p>Activity: You are {stepsContext.exerciseType}</p>
       </IonRow>
       <IonRow>
         <p>{steps}</p>
