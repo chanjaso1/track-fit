@@ -2,6 +2,7 @@ import { IonRow } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { getUserName } from "../data/utilities/Firestore";
 import { useStepsContext } from "../functions/Context";
+import { getCaloriesBurned, getDistance } from "../functions/DeviceMotion";
 import "../styles/styles.css";
 
 export const TextStats = () => {
@@ -27,33 +28,37 @@ export const TextStats = () => {
     setTotalSteps("Total Steps: " + stepsContext.currentSteps);
     setSteps("Steps: " + stepsContext.latestWorkoutSteps);
 
-    if (stepsContext.exerciseType == "walking") {
-      setDistance(
-        "Distance Travelled: " +
-          Math.floor(stepsContext.latestWorkoutSteps * 0.74) +
-          "m"
-      );
+    // if (stepsContext.exerciseType == "walking") {
+    setDistance(
+      "Distance Travelled: " +
+        getDistance(stepsContext) +
+        // Math.floor(stepsContext.latestWorkoutSteps * 0.74) +
+        "m"
+    );
 
-      setCaloriesBurned(
-        "Calories Burned: " +
-          Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
-          "kcal"
-      );
-    } else {
-      //average distance for men and women per running step is 1.651m
-      //https://livehealthy.chron.com/average-inches-per-stride-running-8064.html#:~:text=When%20exercise%20physiologist%20Jack%20Daniels,and%2093%20inches%20for%20sprinters.
-      setDistance(
-        "Distance Travelled: " +
-          Math.floor(stepsContext.latestWorkoutSteps * 1.651) +
-          "m"
-      );
+    setCaloriesBurned(
+      "Calories Burned: " +
+        getCaloriesBurned(stepsContext) +
+        // Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
+        "kcal"
+    );
+    // } else {
+    //average distance for men and women per running step is 1.651m
+    //https://livehealthy.chron.com/average-inches-per-stride-running-8064.html#:~:text=When%20exercise%20physiologist%20Jack%20Daniels,and%2093%20inches%20for%20sprinters.
+    // setDistance(
+    //   "Distance Travelled: " +
+    //     Math.floor(stepsContext.latestWorkoutSteps * 1.651) +
+    //     "m"
+    // );
 
-      setCaloriesBurned(
-        "Calories Burned: " +
-          Math.floor(stepsContext.latestWorkoutSteps / 8.45) +
-          "kcal"
-      );
-    }
+    // setCaloriesBurned(
+    //   "Calories Burned: " +
+    //     Math.floor(stepsContext.latestWorkoutSteps / 8.45) +
+    //     "kcal"
+    // );
+    // }
+
+    // setDistance;
 
     if (stepsContext.latestWorkoutSteps == 10) {
       var userName: any = "";
