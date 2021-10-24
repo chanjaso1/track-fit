@@ -20,7 +20,7 @@ import { useSetWeightContext, useWeightContext } from "../functions/Context";
 
 import "../styles/styles.css";
 
-const StatsScreen: React.FC = () => {
+const WeightsScreen: React.FC = () => {
   const router = useIonRouter(); //	Initializes the router
 
   const weights = useWeightContext();
@@ -48,7 +48,7 @@ const StatsScreen: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Stats / Weight Graph Screen</IonTitle>
+          <IonTitle>Weights Screen</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -88,4 +88,4 @@ const StatsScreen: React.FC = () => {
   );
 };
 
-export default StatsScreen;
+export default WeightsScreen;
