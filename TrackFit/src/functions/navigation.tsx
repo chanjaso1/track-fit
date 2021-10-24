@@ -1,6 +1,9 @@
-//	A more usable, dynamic navigate function
-//	Passing in the path and direction
-//	Working out the action based on direction
+/**
+ *  A more usable, dynamic navigation which passes the path and direction.
+ * @param path
+ * @param direction
+ * @param router
+ */
 export const dynamicNavigate = (
   path: String,
   direction: String,
@@ -10,8 +13,10 @@ export const dynamicNavigate = (
   router.push(path, direction, action);
 };
 
-//	Checking if we can go back
-//	Before calling the goBack() method
+/**
+ * Navigate back to the previous screen
+ * @param router
+ */
 export const navigateBack = (router: any) => {
   if (router.canGoBack()) {
     router.goBack();

@@ -20,6 +20,11 @@ import { useStepsContext } from "../functions/Context";
 import "../styles/styles.css";
 import { setProgress } from "../data/utilities/Firestore";
 
+/**
+ * The workout screen allows the user to start/pause the timer and see the current progress made in their workout
+ * Navigates to the results screen when the user has decided to finish
+ * @returns the InWorkoutScreen
+ */
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
   const stepsContext = useStepsContext();
@@ -48,7 +53,10 @@ const InWorkoutScreen: React.FC = () => {
                   expand="full"
                   onClick={() => {
                     dynamicNavigate("/ResultsScreen", "forward", router);
-                    setProgress(stepsContext.currentRunningSteps, stepsContext.currentWalkingSteps);
+                    setProgress(
+                      stepsContext.currentRunningSteps,
+                      stepsContext.currentWalkingSteps
+                    );
                   }}
                 >
                   <IonLabel>END WORKOUT</IonLabel>

@@ -22,7 +22,6 @@ export const startCount = (
 
   var subscription = DeviceMotion.watchAcceleration(options).subscribe(
     (acceleration: DeviceMotionAccelerationData) => {
-      // console.log(acceleration);
       if (stepsContext.firstStep == -99) {
         stepsContext.firstStep = acceleration.x;
       } else if (stepsContext.secondStep == -99) {
@@ -33,16 +32,13 @@ export const startCount = (
         if (stepsContext.exerciseType == "walking") {
           stepsContext.currentWalkingSteps =
             stepsContext.currentWalkingSteps + 1;
-          console.log("walking steps: " + stepsContext.currentWalkingSteps);
         } else if (stepsContext.exerciseType == "running") {
           stepsContext.currentRunningSteps =
             stepsContext.currentRunningSteps + 1;
-          console.log("running steps: " + stepsContext.currentRunningSteps);
         }
 
         stepsContext.currentSteps = stepsContext.currentSteps + 1;
         stepsContext.latestWorkoutSteps = stepsContext.latestWorkoutSteps + 1;
-        console.log("new steps!!: " + stepsContext.latestWorkoutSteps);
       }
       stepsContext.firstStep = stepsContext.secondStep;
       stepsContext.secondStep = acceleration.x;
@@ -71,6 +67,11 @@ const isStep = (stepsContext: stepsContextInterface) => {
   return false;
 };
 
+/**
+ * Get the distance of the workout
+ * @param stepsContext
+ * @returns
+ */
 export const getDistance = (stepsContext: stepsContextInterface) => {
   if (stepsContext.exerciseType == "walking") {
     return Math.floor(stepsContext.latestWorkoutSteps * 0.74);
@@ -79,6 +80,11 @@ export const getDistance = (stepsContext: stepsContextInterface) => {
   }
 };
 
+/**
+ * Get the calories burned from the workout
+ * @param stepsContext
+ * @returns
+ */
 export const getCaloriesBurned = (stepsContext: stepsContextInterface) => {
   if (stepsContext.exerciseType == "walking") {
     return Math.floor(stepsContext.latestWorkoutSteps / 16.9);
