@@ -13,6 +13,8 @@ export interface GeneralContextValue {
 export interface stepsContextInterface {
   currentSteps: number;
   latestWorkoutSteps: number;
+  currentWalkingSteps: number;
+  currentRunningSteps: number;
   firstStep: number;
   secondStep: number;
   exerciseType: string;
@@ -55,6 +57,8 @@ export function resetData(
 const stepObject: any = {
   currentSteps: 0,
   latestWorkoutSteps: 0,
+  currentWalkingSteps: 0,
+  currentRunningSteps: 0,
   firstStep: -99,
   secondStep: -99,
   exerciseType: "",

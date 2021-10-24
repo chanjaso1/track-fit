@@ -30,6 +30,16 @@ export const startCount = (
 
       if (isStep(stepsContext)) {
         //Make a new step if it is a step
+        if (stepsContext.exerciseType == "walking") {
+          stepsContext.currentWalkingSteps =
+            stepsContext.currentWalkingSteps + 1;
+          console.log("walking steps: " + stepsContext.currentWalkingSteps);
+        } else if (stepsContext.exerciseType == "running") {
+          stepsContext.currentRunningSteps =
+            stepsContext.currentRunningSteps + 1;
+          console.log("running steps: " + stepsContext.currentRunningSteps);
+        }
+
         stepsContext.currentSteps = stepsContext.currentSteps + 1;
         stepsContext.latestWorkoutSteps = stepsContext.latestWorkoutSteps + 1;
         console.log("new steps!!: " + stepsContext.latestWorkoutSteps);
