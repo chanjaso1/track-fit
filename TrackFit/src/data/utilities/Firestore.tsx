@@ -105,26 +105,26 @@ export async function getProgress() {
   var docRef = doc(db, "progress", date);
   var docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data().steps;
-  } else {
-    return 0;
-  }
+    if (docSnap.exists()) {
+        return {r: docSnap.data().runStep, w: docSnap.data().walkStep}
+    } else {
+        return {r: 0, w: 0}
+    }
 }
 
 /**
  * Updates the date's step progress so far
  */
-export async function setProgress(val: number) {
-  var d = new Date();
-  var date =
-    String(d.getDate()) +
-    "-" +
-    String(d.getMonth() + 1) +
-    "-" +
-    String(d.getFullYear());
+export async function setProgress(run: number, walk: number) {
+    var d = new Date();
+    var date =
+        String(d.getDate()) +
+        "-" +
+        String(d.getMonth() + 1) +
+        "-" +
+        String(d.getFullYear());
 
-  setDoc(doc(db, "progress", date), { steps: val });
+    setDoc(doc(db, "progress", date), {runStep: run, walkStep: walk});
 }
 
 /**

@@ -18,6 +18,7 @@ import Stopwatch from "../components/Stopwatch";
 import { useStepsContext } from "../functions/Context";
 
 import "../styles/styles.css";
+import { setProgress } from "../data/utilities/Firestore";
 
 const InWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
@@ -47,6 +48,7 @@ const InWorkoutScreen: React.FC = () => {
                   expand="full"
                   onClick={() => {
                     dynamicNavigate("/ResultsScreen", "forward", router);
+                    setProgress(stepsContext.currentRunningSteps, stepsContext.currentWalkingSteps);
                   }}
                 >
                   <IonLabel>END WORKOUT</IonLabel>

@@ -45,7 +45,9 @@ const HomeScreen: React.FC = () => {
     }})
     getProgress().then(
         function(result) {
-            stepContext.currentSteps = result;
+            stepContext.currentSteps = result.r + result.w;
+            stepContext.currentRunningSteps = result.r;
+            stepContext.currentWalkingSteps = result.w;
     })
   }, []);
 
