@@ -37,7 +37,11 @@ export const TextStats = () => {
       getUserName().then(function (name) {
         userName = name;
         alert(
-          `Congratulations ${userName}, you reached 10 steps! Keep exercising to reach your goal of ${workoutContext.workoutSteps} steps!`
+          `Congratulations ${userName}, you reached 10 steps! You need to complete ${
+            workoutContext.workoutSteps - stepsContext.latestWorkoutSteps
+          } more steps to reach your workout goal of ${
+            workoutContext.workoutSteps
+          } steps!`
         );
       });
     } else if (
@@ -47,7 +51,20 @@ export const TextStats = () => {
       var userName: any = "";
       getUserName().then(function (name) {
         userName = name;
-        alert(`Congratulations ${userName}, you reached halfway! Keep exercising to reach your goal of ${workoutContext.workoutSteps} steps!`);
+        alert(
+          `Congratulations ${userName}, you reached halfway! You need to complete ${
+            workoutContext.workoutSteps - stepsContext.latestWorkoutSteps
+          } more steps to reach your workout goal of ${
+            workoutContext.workoutSteps
+          } steps!`
+        );
+      });
+    } else if (stepsContext.latestWorkoutSteps == workoutContext.workoutSteps) {
+      getUserName().then(function (name) {
+        userName = name;
+        alert(
+          `Congratulations ${userName}, you reached your workout goal of ${workoutContext.workoutSteps} steps!`
+        );
       });
     }
   }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);

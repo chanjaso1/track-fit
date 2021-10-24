@@ -96,8 +96,8 @@ const ResultsScreen: React.FC = () => {
                   <br />
                   <br />
                   You need to complete{" "}
-                  <h4>{goals.step - stepsContext.currentSteps}</h4> steps to
-                  reach your goal!
+                  <h4>{goals.step - stepsContext.currentSteps}</h4> more steps
+                  to reach your goal!
                 </h3>
               </IonCol>
             </IonRow>

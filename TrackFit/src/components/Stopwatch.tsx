@@ -116,10 +116,7 @@ const Stopwatch: React.FC = () => {
             expand="full"
             onClick={() => {
               setTimerRunning(false);
-              // stopCount(subscription);
-              // subscriptions = disposeSubscriptions(subscriptions);
               isRecordingContext.isRecording = false;
-              // console.log(isRecording);
             }}
             disabled={!isRecordingContext.isRecording}
           >
