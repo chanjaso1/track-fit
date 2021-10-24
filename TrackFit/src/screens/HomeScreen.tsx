@@ -80,20 +80,18 @@ const HomeScreen: React.FC = () => {
         onIonScrollEnd={() => {}}
       >
         <IonGrid>
-          <IonRow>
-            <IonCol>
-              <div className="page">
+          <div className="homePage">
+            <IonRow>
+              <IonCol>
                 <h1>TrackFit</h1>
-                <p>
+                <h2>
                   Welcome to TrackFit!
                   <br />
                   View your current progress below.
                   <IonItem />
-                </p>
-              </div>
-            </IonCol>
-          </IonRow>
-          <div className="homePage">
+                </h2>
+              </IonCol>
+            </IonRow>
             {/* Steps Taken */}
             <p>
               Steps: {prog} out of {goals.step}
@@ -147,88 +145,6 @@ const HomeScreen: React.FC = () => {
       </IonContent>
     </IonPage>
   );
-
-  // return (
-  //   <IonPage>
-  //     <IonHeader>
-  //       <IonToolbar>
-  //         <IonTitle>Home</IonTitle>
-  //       </IonToolbar>
-  //     </IonHeader>
-  //     <IonContent
-  //       fullscreen
-  //       scrollEvents={true}
-  //       onIonScrollStart={() => {}}
-  //       onIonScroll={() => {}}
-  //       onIonScrollEnd={() => {}}
-  //     >
-  //       <IonGrid>
-  //         <IonRow>
-  //           <IonCol>
-  //             <div className="page">
-  //               <h1>TrackFit</h1>
-  //               <p>
-  //                 Welcome to TrackFit!
-  //                 <br />
-  //                 View your current progress below.
-  //               </p>
-  //             </div>
-  //           </IonCol>
-  //         </IonRow>
-  //         <div className="homePage">
-  //           <IonRow>
-  //             <p>
-  //               Steps: {prog} out of {goals.step}
-  //               <br />
-  //             </p>
-  //             <ProgressRing
-  //               vals={[prog, goals.step > prog ? goals.step - prog : 0]}
-  //               labs={["Steps Done", "Steps to Go"]}
-  //             />
-  //           </IonRow>
-  //           <IonRow>
-  //             <p>
-  //               Calories Burned:{" "}
-  //               {Math.floor(walk / 16.9) + Math.floor(run / 8.45)} out of{" "}
-  //               {goals.cal}
-  //               <br />
-  //             </p>
-  //             <ProgressRing
-  //               vals={[
-  //                 Math.floor(walk / 16.9) + Math.floor(run / 8.45),
-  //                 goals.step > Math.floor(walk / 16.9) + Math.floor(run / 8.45)
-  //                   ? goals.step -
-  //                     Math.floor(walk / 16.9) +
-  //                     Math.floor(run / 8.45)
-  //                   : 0,
-  //               ]}
-  //               labs={["Calories Burned", "Calories to Burn"]}
-  //             />
-  //           </IonRow>
-  //           <IonRow>
-  //             <p>
-  //               Distance Travelled:{" "}
-  //               {Math.floor(walk * 0.74) + Math.floor(run * 1.651)} out of{" "}
-  //               {goals.dist}
-  //               <br />{" "}
-  //             </p>
-  //             <ProgressRing
-  //               vals={[
-  //                 Math.floor(walk * 0.74) + Math.floor(run * 1.651),
-  //                 goals.step > Math.floor(walk * 0.74) + Math.floor(run * 1.651)
-  //                   ? goals.step -
-  //                     Math.floor(walk * 0.74) +
-  //                     Math.floor(run * 1.651)
-  //                   : 0,
-  //               ]}
-  //               labs={["Distance Travelled", "Distance to Go"]}
-  //             />
-  //           </IonRow>
-  //         </div>
-  //       </IonGrid>
-  //     </IonContent>
-  //   </IonPage>
-  // );
 };
 
 export default HomeScreen;
