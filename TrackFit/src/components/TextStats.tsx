@@ -1,10 +1,8 @@
 import { IonRow } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useStepsContext } from "../functions/Context";
-
 import "../styles/styles.css";
 
-//props: { children: React.ReactNode }
 export const TextStats = () => {
   const stepsContext = useStepsContext();
   const [totalSteps, setTotalSteps] = useState("Total Steps: 0");
@@ -27,17 +25,34 @@ export const TextStats = () => {
   useEffect(() => {
     setTotalSteps("Total Steps: " + stepsContext.currentSteps);
     setSteps("Steps: " + stepsContext.latestWorkoutSteps);
-    setDistance(
-      "Distance Travelled: " +
-        Math.floor(stepsContext.latestWorkoutSteps * 0.74) +
-        "m"
-    );
 
-    setCaloriesBurned(
-      "Calories Burned: " +
-        Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
-        "kcal"
-    );
+    if (stepsContext.exerciseType == "walking") {
+      setDistance(
+        "Distance Travelled: " +
+          Math.floor(stepsContext.latestWorkoutSteps * 0.74) +
+          "m"
+      );
+
+      setCaloriesBurned(
+        "Calories Burned: " +
+          Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
+          "kcal"
+      );
+    } else {
+      //average distance for men and women per running step is 1.651m
+      //https://livehealthy.chron.com/average-inches-per-stride-running-8064.html#:~:text=When%20exercise%20physiologist%20Jack%20Daniels,and%2093%20inches%20for%20sprinters.
+      setDistance(
+        "Distance Travelled: " +
+          Math.floor(stepsContext.latestWorkoutSteps * 1.651) +
+          "m"
+      );
+
+      setCaloriesBurned(
+        "Calories Burned: " +
+          Math.floor(stepsContext.latestWorkoutSteps / 8.45) +
+          "kcal"
+      );
+    }
   }, [stepsContext.currentSteps]);
   //16.9 steps to burn one calorie when walking at 4.83 kph
   //16.9/2 steps to burn one calorie when running at 4.83 * 2 kph

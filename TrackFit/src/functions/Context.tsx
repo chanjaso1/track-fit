@@ -15,6 +15,7 @@ export interface stepsContextInterface {
   latestWorkoutSteps: number;
   firstStep: number;
   secondStep: number;
+  exerciseType: string;
 }
 
 export interface isRecordingInterface {
@@ -36,6 +37,7 @@ const stepObject: any = {
   latestWorkoutSteps: 0,
   firstStep: -99,
   secondStep: -99,
+  exerciseType: "",
 };
 
 const isRecordingObject: any = {

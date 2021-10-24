@@ -7,9 +7,11 @@
  */
 import { useState } from "react";
 import { IonItem, IonLabel, IonSelect, IonSelectOption } from "@ionic/react";
+import { useStepsContext } from "../functions/Context";
 
 const Dropdown = () => {
   const [activity, setActivity] = useState();
+  const stepsContext = useStepsContext();
 
   return (
     <IonItem>
@@ -17,7 +19,10 @@ const Dropdown = () => {
       <IonSelect
         value={activity}
         placeholder="Select activity"
-        onIonChange={(e) => setActivity(e.detail.value)}
+        onIonChange={(e) => {
+          setActivity(e.detail.value);
+          stepsContext.exerciseType = e.detail.value;
+        }}
       >
         <IonSelectOption value="walking">Walking</IonSelectOption>
         <IonSelectOption value="running">Running</IonSelectOption>

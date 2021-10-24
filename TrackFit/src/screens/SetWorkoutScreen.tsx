@@ -56,7 +56,7 @@ const SetWorkoutScreen: React.FC = () => {
                     <IonInput
                       type="number"
                       value={targetDistance}
-                      placeholder="eg. 1k"
+                      placeholder="eg. 1000m"
                       onIonChange={(e) =>
                         setTargetDistance(parseInt(e.detail.value!, 10))
                       }
