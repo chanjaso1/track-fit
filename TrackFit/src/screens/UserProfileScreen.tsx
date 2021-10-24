@@ -81,8 +81,9 @@ const UserProfileScreen: React.FC = () => {
           </div>
           <div className="dailyGoals">
             <p>
-              These are the goals you have set for yourself.<br></br>Click on
-              SET GOALS to set new goals.
+              These are the goals you have set for yourself.
+              <br />
+              Click on SET GOALS to set new goals.
             </p>
             <IonList>
               <IonItem>
