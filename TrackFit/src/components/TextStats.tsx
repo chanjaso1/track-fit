@@ -1,13 +1,11 @@
 import { IonRow } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { AnyCatcher } from "rxjs/internal/AnyCatcher";
 import { getUserName } from "../data/utilities/Firestore";
 import { useStepsContext } from "../functions/Context";
 import "../styles/styles.css";
 
 export const TextStats = () => {
   const stepsContext = useStepsContext();
-  const [totalSteps, setTotalSteps] = useState("Total Steps: 0");
   const [steps, setSteps] = useState(
     "Steps: " + stepsContext.latestWorkoutSteps
   );
@@ -25,7 +23,6 @@ export const TextStats = () => {
    * On a step, update the steps taken, the distance travelled and the calories burned.
    */
   useEffect(() => {
-    setTotalSteps("Total Steps: " + stepsContext.currentSteps);
     setSteps("Steps: " + stepsContext.latestWorkoutSteps);
 
     if (stepsContext.exerciseType == "walking") {
@@ -57,14 +54,14 @@ export const TextStats = () => {
     }
 
     if (stepsContext.latestWorkoutSteps == 10) {
-        var userName: any = "";
-        getUserName().then(function (name) {
-          userName = name;
-          alert(
-            `Congratulations ${userName}, you reached 10 steps! Keep exercising to reach your goal!`
-          );
-        });
-      }
+      var userName: any = "";
+      getUserName().then(function (name) {
+        userName = name;
+        alert(
+          `Congratulations ${userName}, you reached 10 steps! Keep exercising to reach your goal!`
+        );
+      });
+    }
   }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);
   //16.9 steps to burn one calorie when walking at 4.83 kph
   //16.9/2 steps to burn one calorie when running at 4.83 * 2 kph
@@ -72,7 +69,7 @@ export const TextStats = () => {
   return (
     <div className="workoutStats">
       <IonRow>
-        <p>{totalSteps}</p>
+        <p>Activity: You are {stepsContext.exerciseType}</p>
       </IonRow>
       <IonRow>
         <p>{steps}</p>
