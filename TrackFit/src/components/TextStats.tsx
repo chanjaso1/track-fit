@@ -53,7 +53,7 @@ export const TextStats = () => {
           "kcal"
       );
     }
-  }, [stepsContext.currentSteps]);
+  }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);
   //16.9 steps to burn one calorie when walking at 4.83 kph
   //16.9/2 steps to burn one calorie when running at 4.83 * 2 kph
 

@@ -19,9 +19,16 @@ import { useState } from "react";
 import Dropdown from "../components/Dropdown";
 
 import "../styles/styles.css";
+import {
+  resetData,
+  useStepsContext,
+  useTimerContext,
+} from "../functions/Context";
 
 const SetWorkoutScreen: React.FC = () => {
   const router = useIonRouter();
+  const stepsContext = useStepsContext();
+  const timerContext = useTimerContext();
 
   const [targetDistance, setTargetDistance] = useState<number>(NaN);
   const [targetSteps, setTargetSteps] = useState<number>(NaN);
@@ -80,9 +87,10 @@ const SetWorkoutScreen: React.FC = () => {
               <IonCol>
                 <IonButton
                   expand="full"
-                  onClick={() =>
-                    dynamicNavigate("/InWorkoutScreen", "forward", router)
-                  }
+                  onClick={() => {
+                    resetData(stepsContext, timerContext);
+                    dynamicNavigate("/InWorkoutScreen", "forward", router);
+                  }}
                 >
                   <IonLabel>Begin Workout</IonLabel>
                 </IonButton>
