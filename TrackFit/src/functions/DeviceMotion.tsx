@@ -1,5 +1,7 @@
 /**
- * https://ionicframework.com/docs/native/device-motion
+ * DeviceMotion handles the Accelerometer and calculates the steps, distance and calories burned during the workout.
+ *
+ * Reference: https://ionicframework.com/docs/native/device-motion
  */
 
 import {

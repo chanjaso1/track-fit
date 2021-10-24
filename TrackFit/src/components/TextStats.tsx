@@ -1,3 +1,7 @@
+/**
+ * The TextStats component displays the statistics about the current workout.
+ * This includes the current steps, distance travelled and calories burned.
+ */
 import { IonRow } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { getUserName } from "../data/utilities/Firestore";
@@ -30,7 +34,7 @@ export const TextStats = () => {
       "Calories Burned: " + getCaloriesBurned(stepsContext) + "kcal"
     );
 
-    //average distance for men and women per running step is 1.651m
+    // average distance for men and women per running step is 1.651m
     //https://livehealthy.chron.com/average-inches-per-stride-running-8064.html#:~:text=When%20exercise%20physiologist%20Jack%20Daniels,and%2093%20inches%20for%20sprinters.
     if (stepsContext.latestWorkoutSteps == 10) {
       var userName: any = "";
@@ -68,8 +72,8 @@ export const TextStats = () => {
       });
     }
   }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);
-  //16.9 steps to burn one calorie when walking at 4.83 kph
-  //16.9/2 steps to burn one calorie when running at 4.83 * 2 kph
+  // 16.9 steps to burn one calorie when walking at 4.83 kph
+  // 16.9/2 steps to burn one calorie when running at 4.83 * 2 kph
 
   return (
     <div className="workoutStats">
@@ -77,10 +81,14 @@ export const TextStats = () => {
         <p>Activity: You are {stepsContext.exerciseType}</p>
       </IonRow>
       <IonRow>
-        <p>{steps} / {workoutContext.workoutSteps} steps</p>
+        <p>
+          {steps} / {workoutContext.workoutSteps} steps
+        </p>
       </IonRow>
       <IonRow>
-        <p>{distance} / {workoutContext.workoutDistance}m</p>
+        <p>
+          {distance} / {workoutContext.workoutDistance}m
+        </p>
       </IonRow>
       <IonRow>
         <p>{caloriesBurned}</p>

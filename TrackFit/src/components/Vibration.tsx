@@ -7,7 +7,6 @@
  * https://www.youtube.com/watch?v=O9EyIauV2Sw
  */
 import { Vibration } from "@ionic-native/vibration/ngx";
-import React from "react";
 
 class ActivateVibration {
   constructor(private vibration: Vibration) {}
@@ -21,19 +20,13 @@ class ActivateVibration {
     this.vibration.vibrate(1000);
     console.log("vibrate");
 
-    // Vibrate 2 seconds
-    // Pause for 1 second
-    // Vibrate for 2 seconds
-    // Patterns work on Android and Windows only
-    // this.vibration.vibrate([2000, 1000, 2000]);
-
     // Stop any current vibrations immediately
     // Works on Android and Windows only
     this.vibration.vibrate(0);
   }
 
   /**
-   * Immediately stosp the vibration of the device.
+   * Immediately stops the vibration of the device.
    */
   stopVibrate() {
     this.vibration.vibrate(0);

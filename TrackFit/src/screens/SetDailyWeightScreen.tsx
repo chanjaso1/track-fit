@@ -1,3 +1,6 @@
+/**
+ * The Set Daily Weight screen allows the user to enter their weight for the day.
+ */
 import { useState } from "react";
 import {
   IonBackButton,

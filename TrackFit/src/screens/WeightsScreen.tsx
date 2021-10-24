@@ -1,3 +1,7 @@
+/**
+ * The Weights Screen visually displays the user's weight over the last 7 days.
+ * The data is displayed in the form of a line chart. The user also has the option to enter their daily weight.
+ */
 import {
   IonContent,
   IonHeader,

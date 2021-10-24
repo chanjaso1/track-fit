@@ -3,18 +3,11 @@
  *
  * Reference: https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-9_8
  */
-import {
-  doc,
-  collection,
-  setDoc,
-  getDocs,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore/lite";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore/lite";
 import db from "../service-agents/firebaseConfig";
 
 /**
- * Updates the weight value to the corresponding date document of the parameter date
+ * Updates the weight value to the corresponding date document of the parameter date.
  */
 export function writeWeight(date: any, val: any) {
   setDoc(doc(db, "weights", date), {
@@ -23,7 +16,7 @@ export function writeWeight(date: any, val: any) {
 }
 
 /**
- * Obtains the weight values of the last seven days, and returns them into an array
+ * Obtains the weight values of the last seven days, and returns them into an array.
  */
 export async function getWeek() {
   var d = new Date();
@@ -38,9 +31,7 @@ export async function getWeek() {
   for (let i = 0; i < 7; i++) {
     var docRef = doc(db, "weights", date);
     var docSnap = await getDoc(docRef);
-    // console.log(date)
     if (docSnap.exists()) {
-      // console.log(docSnap.data().weight);
       weight = [docSnap.data().weight, ...weight];
     } else {
       weight = [null, ...weight];
@@ -53,12 +44,11 @@ export async function getWeek() {
       "-" +
       String(d.getFullYear());
   }
-  // console.log(weight)
   return weight;
 }
 
 /**
- * Obtain the user's set goals from firestore
+ * Obtain the user's set goals from firestore.
  */
 export async function getGoals() {
   var out: any = {};
@@ -94,7 +84,12 @@ export async function updateUserDetails(name: string, age: number) {
  * Update the user's daily goals within the database.
  * This includes the goal calories, distance, weight and steps.
  */
- export async function updateDailyGoals(calories:any, distance:any, steps:any, weight:any) {
+export async function updateDailyGoals(
+  calories: any,
+  distance: any,
+  steps: any,
+  weight: any
+) {
   const user = doc(db, "users", "user1"); // gets the user stored in the database
 
   // updates the daily goal fields within the database
@@ -107,7 +102,7 @@ export async function updateUserDetails(name: string, age: number) {
 }
 
 /**
- * Obtains the date's step progress so far
+ * Obtains the date's step progress so far.
  */
 export async function getProgress() {
   var d = new Date();
@@ -121,26 +116,26 @@ export async function getProgress() {
   var docRef = doc(db, "progress", date);
   var docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        return {r: docSnap.data().runStep, w: docSnap.data().walkStep}
-    } else {
-        return {r: 0, w: 0}
-    }
+  if (docSnap.exists()) {
+    return { r: docSnap.data().runStep, w: docSnap.data().walkStep };
+  } else {
+    return { r: 0, w: 0 };
+  }
 }
 
 /**
- * Updates the date's step progress so far
+ * Updates the date's step progress so far.
  */
 export async function setProgress(run: number, walk: number) {
-    var d = new Date();
-    var date =
-        String(d.getDate()) +
-        "-" +
-        String(d.getMonth() + 1) +
-        "-" +
-        String(d.getFullYear());
+  var d = new Date();
+  var date =
+    String(d.getDate()) +
+    "-" +
+    String(d.getMonth() + 1) +
+    "-" +
+    String(d.getFullYear());
 
-    setDoc(doc(db, "progress", date), {runStep: run, walkStep: walk});
+  setDoc(doc(db, "progress", date), { runStep: run, walkStep: walk });
 }
 
 /**

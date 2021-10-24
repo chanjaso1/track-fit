@@ -1,3 +1,6 @@
+/**
+ * The Home screen of the app displays the user's daily progress in the form of pie charts.
+ */
 import {
   IonContent,
   IonHeader,

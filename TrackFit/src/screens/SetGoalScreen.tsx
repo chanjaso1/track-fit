@@ -1,3 +1,8 @@
+/**
+ * The Set Goal screen allows the user to set their daily goals.
+ * This includes their daily calorie, distance and steps goal. 
+ * A Weight goal is also included which is a long-term goal the user can achieve.
+ */
 import {
   IonBackButton,
   IonButton,

@@ -1,10 +1,17 @@
 /**
+ * Context follows Flux architecture and creates a store for variables to be acessed globally.
+ * This allows variables to be accessed from any level within the app.
+ *
+ * References:
  * https://reacttraining.com/blog/react-context-with-typescript/
  * https://www.youtube.com/watch?v=5LrDIWkK_Bc
  */
 
 import React, { createContext, useState, useContext } from "react";
 
+/**
+ * Variables related to In Workout statistics.
+ */
 export interface stepsContextInterface {
   currentSteps: number;
   latestWorkoutSteps: number;
@@ -15,16 +22,25 @@ export interface stepsContextInterface {
   exerciseType: string;
 }
 
+/**
+ * Variables related to the Timer component.
+ */
 export interface timerContextInterface {
   hours: number;
   minutes: number;
   seconds: number;
 }
 
+/**
+ * Provides a global context to check if the accelerometer is recording.
+ */
 export interface isRecordingInterface {
   isRecording: boolean;
 }
 
+/**
+ * Variables related to the workout goals in the Set Workout screen.
+ */
 export interface workoutContextInterface {
   workoutDistance: number;
   workoutSteps: number;
@@ -36,14 +52,12 @@ const timerContext = createContext({} as timerContextInterface);
 const workoutContext = createContext({} as workoutContextInterface);
 
 /**
- *
  * @returns the isRecordingContext
  */
 export function useIsRecording() {
   return useContext(isRecordingContext);
 }
 /**
- *
  * @returns the stepsContext
  */
 export function useStepsContext() {
@@ -51,15 +65,13 @@ export function useStepsContext() {
 }
 
 /**
- *
  * @returns the timerContext
  */
 export function useTimerContext() {
   return useContext(timerContext);
 }
 
-/**
- *
+/*
  * @returns the workoutContext
  */
 export function useWorkoutContext() {
@@ -106,7 +118,7 @@ const timerObject: timerContextInterface = {
 };
 
 /**
- * Provide context for the app
+ * Provides context for the app.
  * @param props -- The app
  * @returns all contexts as global states for the app
  */
@@ -145,21 +157,17 @@ const setWeightContext = createContext(
   {} as React.Dispatch<React.SetStateAction<any>>
 );
 /**
- *
  * @returns the weightContext
  */
 export function useWeightContext() {
   return useContext(weightContext);
 }
 /**
- *
  * @returns the setWeightContext
  */
 export function useSetWeightContext() {
   return useContext(setWeightContext);
 }
-
-// --
 
 const goalsContext = createContext({} as any);
 const setGoalsContext = createContext(
@@ -167,7 +175,6 @@ const setGoalsContext = createContext(
 );
 
 /**
- *
  * @returns the goalsContext
  */
 export function useGoalsContext() {
@@ -175,7 +182,6 @@ export function useGoalsContext() {
 }
 
 /**
- *
  * @returns the setGoalContext
  */
 export function useSetGoalsContext() {

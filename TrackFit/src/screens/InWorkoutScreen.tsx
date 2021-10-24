@@ -1,3 +1,7 @@
+/**
+ * The In Workout screen displays the stopwatch and the user's current workout statistics as they complete the workout.
+ * The statistics are defined in the TextStats component.
+ */
 import {
   IonButton,
   IonContent,

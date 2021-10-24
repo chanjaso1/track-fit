@@ -18,7 +18,6 @@ import { TextStats } from "./TextStats";
 import "../styles/styles.css";
 
 /**
- *
  * @returns the stop watch, start/pause buttons, and textstats
  */
 const Stopwatch: React.FC = () => {

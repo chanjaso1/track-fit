@@ -1,3 +1,7 @@
+/**
+ * The Set Workout screen allows the user to choose the type of workout activity (walking, running)
+ * and set the target steps and distance they want to achieve during the workout.
+ */
 import {
   IonButton,
   IonContent,

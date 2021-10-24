@@ -1,3 +1,7 @@
+/**
+ * The Results screen displays the user's workout statistics at the end of their workout.
+ * This includes the number of steps taken, distance travelled and calories burned.
+ */
 import {
   IonButton,
   IonContent,

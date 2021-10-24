@@ -1,6 +1,6 @@
 /**
- * The User Profile screen requests the user to input basic information (name, age, weight) about themselves.
- * The user is also prompted to set their goals that will be used throught out the app.
+ * The User Profile screen requests the user to input basic information (name, age) about themselves.
+ * The user is also has the option to set their goals that will be used throught out the app.
  *
  * References:
  * https://ionicframework.com/docs/api/input
