@@ -18,7 +18,7 @@ export const startCount = (
   stepsContext: stepsContextInterface,
   stillRecording: isRecordingInterface
 ) => {
-  var options: DeviceMotionAccelerometerOptions = { frequency: 10 };
+  var options: DeviceMotionAccelerometerOptions = { frequency: 20 };
 
   var subscription = DeviceMotion.watchAcceleration(options).subscribe(
     (acceleration: DeviceMotionAccelerationData) => {

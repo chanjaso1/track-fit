@@ -1,24 +1,22 @@
 import { IonRow } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { getUserName } from "../data/utilities/Firestore";
-import { useStepsContext } from "../functions/Context";
+import { useStepsContext, useWorkoutContext } from "../functions/Context";
 import { getCaloriesBurned, getDistance } from "../functions/DeviceMotion";
 import "../styles/styles.css";
 
 export const TextStats = () => {
   const stepsContext = useStepsContext();
+  const workoutContext = useWorkoutContext();
   const [totalSteps, setTotalSteps] = useState("Total Steps: 0");
   const [steps, setSteps] = useState(
     "Steps: " + stepsContext.latestWorkoutSteps
   );
   const [distance, setDistance] = useState(
-    "Distance Travelled: " + stepsContext.latestWorkoutSteps * 0.74
+    "Distance Travelled: " + getDistance(stepsContext)
   );
   const [caloriesBurned, setCaloriesBurned] = useState(
-    "Calories Burned: " +
-      (stepsContext.latestWorkoutSteps % 16.9 > 0
-        ? stepsContext.latestWorkoutSteps % 16.9
-        : 0)
+    "Calories Burned: " + getCaloriesBurned(stepsContext)
   );
 
   /**
@@ -28,13 +26,7 @@ export const TextStats = () => {
     setTotalSteps("Total Steps: " + stepsContext.currentSteps);
     setSteps("Steps: " + stepsContext.latestWorkoutSteps);
 
-    // if (stepsContext.exerciseType == "walking") {
-    setDistance(
-      "Distance Travelled: " +
-        getDistance(stepsContext) +
-        // Math.floor(stepsContext.latestWorkoutSteps * 0.74) +
-        "m"
-    );
+    setDistance("Distance Travelled: " + getDistance(stepsContext) + "m");
 
     setCaloriesBurned(
       "Calories Burned: " +
@@ -42,23 +34,8 @@ export const TextStats = () => {
         // Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
         "kcal"
     );
-    // } else {
     //average distance for men and women per running step is 1.651m
     //https://livehealthy.chron.com/average-inches-per-stride-running-8064.html#:~:text=When%20exercise%20physiologist%20Jack%20Daniels,and%2093%20inches%20for%20sprinters.
-    // setDistance(
-    //   "Distance Travelled: " +
-    //     Math.floor(stepsContext.latestWorkoutSteps * 1.651) +
-    //     "m"
-    // );
-
-    // setCaloriesBurned(
-    //   "Calories Burned: " +
-    //     Math.floor(stepsContext.latestWorkoutSteps / 8.45) +
-    //     "kcal"
-    // );
-    // }
-
-    // setDistance;
 
     if (stepsContext.latestWorkoutSteps == 10) {
       var userName: any = "";
@@ -67,6 +44,15 @@ export const TextStats = () => {
         alert(
           `Congratulations ${userName}, you reached 10 steps! Keep exercising to reach your goal!`
         );
+      });
+    } else if (
+      stepsContext.latestWorkoutSteps == workoutContext.workoutSteps / 2 &&
+      workoutContext.workoutSteps > 0
+    ) {
+      var userName: any = "";
+      getUserName().then(function (name) {
+        userName = name;
+        alert(`Congratulations ${userName}, you reached halfway steps!`);
       });
     }
   }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);
