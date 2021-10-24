@@ -26,7 +26,7 @@ import { setProgress } from "../data/utilities/Firestore";
  * @returns the InWorkoutScreen
  */
 const InWorkoutScreen: React.FC = () => {
-  const router = useIonRouter();
+  const router = useIonRouter(); //	Initializes the router
   const stepsContext = useStepsContext();
 
   return (

@@ -27,7 +27,7 @@ import {
 } from "../functions/Context";
 
 const SetWorkoutScreen: React.FC = () => {
-  const router = useIonRouter();
+  const router = useIonRouter(); //	Initializes the router
   const stepsContext = useStepsContext();
   const timerContext = useTimerContext();
 

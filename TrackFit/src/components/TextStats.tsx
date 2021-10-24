@@ -29,15 +29,19 @@ export const TextStats = () => {
     setCaloriesBurned(
       "Calories Burned: " + getCaloriesBurned(stepsContext) + "kcal"
     );
+
     //average distance for men and women per running step is 1.651m
     //https://livehealthy.chron.com/average-inches-per-stride-running-8064.html#:~:text=When%20exercise%20physiologist%20Jack%20Daniels,and%2093%20inches%20for%20sprinters.
-
     if (stepsContext.latestWorkoutSteps == 10) {
       var userName: any = "";
       getUserName().then(function (name) {
         userName = name;
         alert(
-          `Congratulations ${userName}, you reached 10 steps! Keep exercising to reach your goal!`
+          `Congratulations ${userName}, you reached 10 steps! You need to complete ${
+            workoutContext.workoutSteps - stepsContext.latestWorkoutSteps
+          } more steps to reach your workout goal of ${
+            workoutContext.workoutSteps
+          } steps!`
         );
       });
     } else if (
@@ -47,7 +51,20 @@ export const TextStats = () => {
       var userName: any = "";
       getUserName().then(function (name) {
         userName = name;
-        alert(`Congratulations ${userName}, you reached halfway steps!`);
+        alert(
+          `Congratulations ${userName}, you reached halfway! You need to complete ${
+            workoutContext.workoutSteps - stepsContext.latestWorkoutSteps
+          } more steps to reach your workout goal of ${
+            workoutContext.workoutSteps
+          } steps!`
+        );
+      });
+    } else if (stepsContext.latestWorkoutSteps == workoutContext.workoutSteps) {
+      getUserName().then(function (name) {
+        userName = name;
+        alert(
+          `Congratulations ${userName}, you reached your workout goal of ${workoutContext.workoutSteps} steps!`
+        );
       });
     }
   }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);

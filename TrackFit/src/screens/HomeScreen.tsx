@@ -7,7 +7,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonItem,
+  IonItemDivider,
 } from "@ionic/react";
 import { useIonRouter } from "@ionic/react";
 // import { Vibration } from "@ionic-native/vibration/ngx";
@@ -24,7 +24,7 @@ import { getGoals, getProgress } from "../data/utilities/Firestore";
 import "../styles/styles.css";
 
 const HomeScreen: React.FC = () => {
-  const router = useIonRouter();
+  const router = useIonRouter(); //	Initializes the router
   // let vibration = new ActivateVibration(new Vibration());
 
   const goals = useGoalsContext();
@@ -87,59 +87,65 @@ const HomeScreen: React.FC = () => {
                 <h2>
                   Welcome to TrackFit!
                   <br />
-                  View your current progress below.
-                  <IonItem />
+                  View your daily progress below.
+                  <IonItemDivider />
                 </h2>
               </IonCol>
             </IonRow>
             {/* Steps Taken */}
             <p>
               Steps: {prog} out of {goals.step}
-              <br />
             </p>
+            <h2>You need {goals.step - prog} more steps to reach your goal.</h2>
             <ProgressRing
               vals={[prog, goals.step > prog ? goals.step - prog : 0]}
               labs={["Steps Done", "Steps to Go"]}
             />
-            <IonItem />
-            {/* Calories Burned */}
-            <p>
-              Calories Burned:{" "}
-              {Math.floor(walk / 16.9) + Math.floor(run / 8.45)} out of{" "}
-              {goals.cal}
-              <br />
-            </p>
-            <ProgressRing
-              vals={[
-                Math.floor(walk / 16.9) + Math.floor(run / 8.45),
-                goals.step > Math.floor(walk / 16.9) + Math.floor(run / 8.45)
-                  ? goals.step -
-                    Math.floor(walk / 16.9) +
-                    Math.floor(run / 8.45)
-                  : 0,
-              ]}
-              labs={["Calories Burned", "Calories to Burn"]}
-            />
-            <IonItem />
+            <IonItemDivider />
             {/* Distance Travelled */}
             <p>
               Distance Travelled:{" "}
               {Math.floor(walk * 0.74) + Math.floor(run * 1.651)} out of{" "}
               {goals.dist}
-              <br />{" "}
             </p>
+            <h2>
+              You need to travel{" "}
+              {goals.dist - (Math.floor(walk * 0.74) + Math.floor(run * 1.651))}{" "}
+              more meters to reach your goal.
+            </h2>
             <ProgressRing
               vals={[
                 Math.floor(walk * 0.74) + Math.floor(run * 1.651),
-                goals.step > Math.floor(walk * 0.74) + Math.floor(run * 1.651)
-                  ? goals.step -
+                goals.dist > Math.floor(walk * 0.74) + Math.floor(run * 1.651)
+                  ? goals.dist -
                     Math.floor(walk * 0.74) +
                     Math.floor(run * 1.651)
                   : 0,
               ]}
               labs={["Distance Travelled", "Distance to Go"]}
             />
-            <IonItem />
+            <IonItemDivider />
+            {/* Calories Burned */}
+            <p>
+              Calories Burned:{" "}
+              {Math.floor(walk / 16.9) + Math.floor(run / 8.45)} out of{" "}
+              {goals.cal}
+            </p>
+            <h2>
+              You need to burn{" "}
+              {goals.cal - Math.floor(walk / 16.9) + Math.floor(run / 8.45)}{" "}
+              more calories to reach your goal.
+            </h2>
+            <ProgressRing
+              vals={[
+                Math.floor(walk / 16.9) + Math.floor(run / 8.45),
+                goals.cal > Math.floor(walk / 16.9) + Math.floor(run / 8.45)
+                  ? goals.cal - Math.floor(walk / 16.9) + Math.floor(run / 8.45)
+                  : 0,
+              ]}
+              labs={["Calories Burned", "Calories to Burn"]}
+            />
+            <IonItemDivider />
           </div>
         </IonGrid>
       </IonContent>

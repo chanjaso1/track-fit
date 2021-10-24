@@ -22,7 +22,7 @@ import { useSetWeightContext, useWeightContext } from "../functions/Context";
 import "../styles/styles.css";
 
 const SetDailyWeightScreen: React.FC = () => {
-  const router = useIonRouter();
+  const router = useIonRouter(); //	Initializes the router
 
   const [number, setNumber] = useState<number>();
   var d = new Date();
