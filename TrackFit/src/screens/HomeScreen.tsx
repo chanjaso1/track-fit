@@ -87,7 +87,7 @@ const HomeScreen: React.FC = () => {
                 <h2>
                   Welcome to TrackFit!
                   <br />
-                  View your current progress below.
+                  View your daily progress below.
                   <IonItemDivider />
                 </h2>
               </IonCol>
