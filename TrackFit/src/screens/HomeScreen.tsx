@@ -38,6 +38,7 @@ const HomeScreen: React.FC = () => {
   const [prog, setProg] = useState<number>(0); 
   const [run, setRun] = useState<number>(0);
   const [walk, setWalk] = useState<number>(0);
+  const [arbi, setArbi] = useState<boolean>(false);
 
   // Synchronise stepContext's passed daily progress variables with Firestore when opening app
   useEffect(() => {
@@ -46,6 +47,7 @@ const HomeScreen: React.FC = () => {
             stepContext.currentSteps = result.r + result.w;
             stepContext.currentRunningSteps = result.r;
             stepContext.currentWalkingSteps = result.w;
+            setArbi(!arbi)
     })
     getGoals().then(function(result) {
         if (result !== null) {
@@ -61,7 +63,7 @@ const HomeScreen: React.FC = () => {
     setProg(stepContext.currentSteps)
     setRun(stepContext.currentRunningSteps)
     setWalk(stepContext.currentWalkingSteps)
-  }, [stepContext.currentSteps]);
+  }, [stepContext.currentSteps, arbi]);
 
   return (
     <IonPage>
