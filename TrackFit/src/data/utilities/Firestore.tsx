@@ -61,19 +61,19 @@ export async function getWeek() {
  * Obtain the user's set goals from firestore
  */
 export async function getGoals() {
-    var out: any = {};
-    var docRef = doc(db, "users", "user1");
-    var docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-        out = {
-            cal: docSnap.data().GoalCalories,
-            dist: docSnap.data().GoalDistance,
-            step: docSnap.data().GoalSteps,
-            weight: docSnap.data().GoalWeight
-        }
+  var out: any = {};
+  var docRef = doc(db, "users", "user1");
+  var docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    out = {
+      cal: docSnap.data().GoalCalories,
+      dist: docSnap.data().GoalDistance,
+      step: docSnap.data().GoalSteps,
+      weight: docSnap.data().GoalWeight,
+    };
 
-        return out;
-    }
+    return out;
+  }
 }
 
 /**
@@ -94,36 +94,46 @@ export async function updateUserDetails(name: string, age: number) {
  * Obtains the date's step progress so far
  */
 export async function getProgress() {
-    var d = new Date();
-    var date =
-        String(d.getDate()) +
-        "-" +
-        String(d.getMonth() + 1) +
-        "-" +
-        String(d.getFullYear());
+  var d = new Date();
+  var date =
+    String(d.getDate()) +
+    "-" +
+    String(d.getMonth() + 1) +
+    "-" +
+    String(d.getFullYear());
 
-    var docRef = doc(db, "progress", date);
-    var docSnap = await getDoc(docRef);
+  var docRef = doc(db, "progress", date);
+  var docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        return docSnap.data().steps
-    } else {
-        return 0
-    }
+  if (docSnap.exists()) {
+    return docSnap.data().steps;
+  } else {
+    return 0;
+  }
 }
 
 /**
  * Updates the date's step progress so far
  */
 export async function setProgress(val: number) {
-    var d = new Date();
-    var date =
-        String(d.getDate()) +
-        "-" +
-        String(d.getMonth() + 1) +
-        "-" +
-        String(d.getFullYear());
+  var d = new Date();
+  var date =
+    String(d.getDate()) +
+    "-" +
+    String(d.getMonth() + 1) +
+    "-" +
+    String(d.getFullYear());
 
-    setDoc(doc(db, "progress", date), {steps: val});
+  setDoc(doc(db, "progress", date), { steps: val });
 }
-    
+
+/**
+ * Get the user's name from the database.
+ */
+export async function getUserName() {
+  var docRef = doc(db, "users", "user1");
+  var docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return docSnap.data().Name;
+  }
+}
