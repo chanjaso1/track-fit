@@ -5,11 +5,6 @@
 
 import React, { createContext, useState, useContext } from "react";
 
-export interface GeneralContextValue {
-  isRecording: boolean;
-  setIsRecording(event: React.ChangeEvent<HTMLInputElement>): void;
-}
-
 export interface stepsContextInterface {
   currentSteps: number;
   latestWorkoutSteps: number;
@@ -29,9 +24,16 @@ export interface timerContextInterface {
 export interface isRecordingInterface {
   isRecording: boolean;
 }
+
+export interface workoutContextInterface {
+  workoutDistance: number;
+  workoutSteps: number;
+}
+
 const isRecordingContext = createContext({} as isRecordingInterface);
 const stepsContext = createContext({} as stepsContextInterface);
 const timerContext = createContext({} as timerContextInterface);
+const workoutContext = createContext({} as workoutContextInterface);
 
 export function useIsRecording() {
   return useContext(isRecordingContext);
@@ -43,6 +45,10 @@ export function useStepsContext() {
 
 export function useTimerContext() {
   return useContext(timerContext);
+}
+
+export function useWorkoutContext() {
+  return useContext(workoutContext);
 }
 
 export function resetData(
@@ -62,6 +68,11 @@ const stepObject: any = {
   firstStep: -99,
   secondStep: -99,
   exerciseType: "",
+};
+
+const workoutObject: workoutContextInterface = {
+  workoutDistance: 0,
+  workoutSteps: 0,
 };
 
 const isRecordingObject: any = {
@@ -91,7 +102,9 @@ export default function ContextProvider(props: { children: React.ReactNode }) {
             <isRecordingContext.Provider value={isRecordingObject}>
               <stepsContext.Provider value={stepObject}>
                 <timerContext.Provider value={timerObject}>
-                  {props.children}
+                  <workoutContext.Provider value={workoutObject}>
+                    {props.children}
+                  </workoutContext.Provider>
                 </timerContext.Provider>
               </stepsContext.Provider>
             </isRecordingContext.Provider>
