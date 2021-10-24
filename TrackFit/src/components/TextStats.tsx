@@ -55,24 +55,17 @@ export const TextStats = () => {
           "kcal"
       );
     }
-  }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);
-    setCaloriesBurned(
-      "Calories Burned: " +
-        Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
-        "kcal"
-    );
 
-    // actionable insight - motivates user to continue reaching their goal after 10 steps is reached
     if (stepsContext.latestWorkoutSteps == 10) {
-      var userName: any = "";
-      getUserName().then(function (name) {
-        userName = name;
-        alert(
-          `Congratulations ${userName}, you reached 10 steps! Keep exercising to reach your goal!`
-        );
-      });
-    }
-  }, [stepsContext.currentSteps]);
+        var userName: any = "";
+        getUserName().then(function (name) {
+          userName = name;
+          alert(
+            `Congratulations ${userName}, you reached 10 steps! Keep exercising to reach your goal!`
+          );
+        });
+      }
+  }, [stepsContext.currentSteps, stepsContext.latestWorkoutSteps]);
   //16.9 steps to burn one calorie when walking at 4.83 kph
   //16.9/2 steps to burn one calorie when running at 4.83 * 2 kph
 

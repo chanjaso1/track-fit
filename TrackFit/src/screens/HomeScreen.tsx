@@ -36,6 +36,12 @@ const HomeScreen: React.FC = () => {
   const stepContext = useStepsContext();
 
   useEffect(() => {
+    getProgress().then(
+        function(result) {
+            stepContext.currentSteps = result.r + result.w;
+            stepContext.currentRunningSteps = result.r;
+            stepContext.currentWalkingSteps = result.w;
+    })
     getGoals().then(function(result) {
         if (result !== null) {
             setGoals(result);
@@ -43,12 +49,6 @@ const HomeScreen: React.FC = () => {
             setGoals({
                 cal: 0, dist: 0, step: 0, weight: 0})
     }})
-    getProgress().then(
-        function(result) {
-            stepContext.currentSteps = result.r + result.w;
-            stepContext.currentRunningSteps = result.r;
-            stepContext.currentWalkingSteps = result.w;
-    })
   }, []);
 
   return (
