@@ -46,6 +46,10 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./styles/variables.css";
 
+/**
+ * TrackFit is a fitness app where a user can track their daily progress through workouts such as running and walking.
+ * @returns the app
+ */
 const App: React.FC = () => (
   <IonApp>
     <ContextProvider>

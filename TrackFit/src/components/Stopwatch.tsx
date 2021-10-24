@@ -7,7 +7,6 @@
  */
 import React, { useEffect, useState } from "react";
 import { IonButton, IonGrid, IonLabel, IonRow, IonCol } from "@ionic/react";
-import { Subscription } from "rxjs";
 import {
   useIsRecording,
   useStepsContext,
@@ -18,6 +17,10 @@ import { TextStats } from "./TextStats";
 
 import "../styles/styles.css";
 
+/**
+ *
+ * @returns the stop watch, start/pause buttons, and textstats
+ */
 const Stopwatch: React.FC = () => {
   const timerContext = useTimerContext();
   let hours = timerContext.hours;
@@ -120,7 +123,7 @@ const Stopwatch: React.FC = () => {
             }}
             disabled={!isRecordingContext.isRecording}
           >
-            <IonLabel>STOP</IonLabel>
+            <IonLabel>PAUSE</IonLabel>
           </IonButton>
         </IonCol>
       </IonRow>

@@ -29,10 +29,7 @@ export const TextStats = () => {
     setDistance("Distance Travelled: " + getDistance(stepsContext) + "m");
 
     setCaloriesBurned(
-      "Calories Burned: " +
-        getCaloriesBurned(stepsContext) +
-        // Math.floor(stepsContext.latestWorkoutSteps / 16.9) +
-        "kcal"
+      "Calories Burned: " + getCaloriesBurned(stepsContext) + "kcal"
     );
     //average distance for men and women per running step is 1.651m
     //https://livehealthy.chron.com/average-inches-per-stride-running-8064.html#:~:text=When%20exercise%20physiologist%20Jack%20Daniels,and%2093%20inches%20for%20sprinters.

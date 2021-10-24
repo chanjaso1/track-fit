@@ -35,22 +35,42 @@ const stepsContext = createContext({} as stepsContextInterface);
 const timerContext = createContext({} as timerContextInterface);
 const workoutContext = createContext({} as workoutContextInterface);
 
+/**
+ *
+ * @returns the isRecordingContext
+ */
 export function useIsRecording() {
   return useContext(isRecordingContext);
 }
-
+/**
+ *
+ * @returns the stepsContext
+ */
 export function useStepsContext() {
   return useContext(stepsContext);
 }
 
+/**
+ *
+ * @returns the timerContext
+ */
 export function useTimerContext() {
   return useContext(timerContext);
 }
 
+/**
+ *
+ * @returns the workoutContext
+ */
 export function useWorkoutContext() {
   return useContext(workoutContext);
 }
 
+/**
+ * Resets fields inside the stepsContext and timerContext
+ * @param stepsContext
+ * @param timerContext
+ */
 export function resetData(
   stepsContext: stepsContextInterface,
   timerContext: timerContextInterface
@@ -85,6 +105,11 @@ const timerObject: timerContextInterface = {
   seconds: 0,
 };
 
+/**
+ * Provide context for the app
+ * @param props -- The app
+ * @returns all contexts as global states for the app
+ */
 export default function ContextProvider(props: { children: React.ReactNode }) {
   const [initialWeight, setInitialWeight] = useState([]);
   const [initialGoals, setInitialGoals] = useState({
@@ -119,9 +144,17 @@ const weightContext = createContext([] as any);
 const setWeightContext = createContext(
   {} as React.Dispatch<React.SetStateAction<any>>
 );
+/**
+ *
+ * @returns the weightContext
+ */
 export function useWeightContext() {
   return useContext(weightContext);
 }
+/**
+ *
+ * @returns the setWeightContext
+ */
 export function useSetWeightContext() {
   return useContext(setWeightContext);
 }
@@ -132,9 +165,19 @@ const goalsContext = createContext({} as any);
 const setGoalsContext = createContext(
   {} as React.Dispatch<React.SetStateAction<any>>
 );
+
+/**
+ *
+ * @returns the goalsContext
+ */
 export function useGoalsContext() {
   return useContext(goalsContext);
 }
+
+/**
+ *
+ * @returns the setGoalContext
+ */
 export function useSetGoalsContext() {
   return useContext(setGoalsContext);
 }

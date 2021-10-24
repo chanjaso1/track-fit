@@ -16,6 +16,10 @@ import { useIonRouter } from "@ionic/react";
 
 import "../styles/styles.css";
 
+/**
+ * The results screen shows the final results of the user's workout
+ * @returns the results screen
+ */
 const ResultsScreen: React.FC = () => {
   const router = useIonRouter();
 
