@@ -18,7 +18,7 @@ export const startCount = (
   stepsContext: stepsContextInterface,
   stillRecording: isRecordingInterface
 ) => {
-  var options: DeviceMotionAccelerometerOptions = { frequency: 10 };
+  var options: DeviceMotionAccelerometerOptions = { frequency: 20 };
 
   var subscription = DeviceMotion.watchAcceleration(options).subscribe(
     (acceleration: DeviceMotionAccelerationData) => {
@@ -60,7 +60,7 @@ export const startCount = (
  * @param stepsContext
  * @returns true if it is a step
  */
-export const isStep = (stepsContext: stepsContextInterface) => {
+const isStep = (stepsContext: stepsContextInterface) => {
   //check that the first and second step is in the opposite direction.
   if (
     (stepsContext.secondStep < 0 && stepsContext.firstStep > 0) ||
@@ -69,4 +69,20 @@ export const isStep = (stepsContext: stepsContextInterface) => {
     return true; //count as a step
   }
   return false;
+};
+
+export const getDistance = (stepsContext: stepsContextInterface) => {
+  if (stepsContext.exerciseType == "walking") {
+    return Math.floor(stepsContext.latestWorkoutSteps * 0.74);
+  } else {
+    return Math.floor(stepsContext.latestWorkoutSteps * 1.651);
+  }
+};
+
+export const getCaloriesBurned = (stepsContext: stepsContextInterface) => {
+  if (stepsContext.exerciseType == "walking") {
+    return Math.floor(stepsContext.latestWorkoutSteps / 16.9);
+  } else {
+    return Math.floor(stepsContext.latestWorkoutSteps / 8.45);
+  }
 };

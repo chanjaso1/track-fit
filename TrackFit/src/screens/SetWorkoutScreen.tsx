@@ -23,6 +23,7 @@ import {
   resetData,
   useStepsContext,
   useTimerContext,
+  useWorkoutContext,
 } from "../functions/Context";
 
 const SetWorkoutScreen: React.FC = () => {
@@ -32,6 +33,7 @@ const SetWorkoutScreen: React.FC = () => {
 
   const [targetDistance, setTargetDistance] = useState<number>(NaN);
   const [targetSteps, setTargetSteps] = useState<number>(NaN);
+  const workoutContext = useWorkoutContext();
 
   return (
     <IonPage>
@@ -64,9 +66,13 @@ const SetWorkoutScreen: React.FC = () => {
                       type="number"
                       value={targetDistance}
                       placeholder="eg. 1000m"
-                      onIonChange={(e) =>
-                        setTargetDistance(parseInt(e.detail.value!, 10))
-                      }
+                      onIonChange={(e) => {
+                        setTargetDistance(parseInt(e.detail.value!, 10));
+                        workoutContext.workoutDistance = parseInt(
+                          e.detail.value!,
+                          10
+                        );
+                      }}
                     ></IonInput>
                   </IonItem>
                   <IonItem>
@@ -75,9 +81,13 @@ const SetWorkoutScreen: React.FC = () => {
                       type="number"
                       value={targetSteps}
                       placeholder="eg. 500 steps"
-                      onIonChange={(e) =>
-                        setTargetSteps(parseInt(e.detail.value!, 10))
-                      }
+                      onIonChange={(e) => {
+                        workoutContext.workoutSteps = parseInt(
+                          e.detail.value!,
+                          10
+                        );
+                        setTargetSteps(parseInt(e.detail.value!, 10));
+                      }}
                     ></IonInput>
                   </IonItem>
                 </IonList>
