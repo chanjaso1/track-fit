@@ -95,30 +95,11 @@ const HomeScreen: React.FC = () => {
             {/* Steps Taken */}
             <p>
               Steps: {prog} out of {goals.step}
-              <br />
             </p>
+            <h2>You need {goals.step - prog} more steps to reach your goal.</h2>
             <ProgressRing
               vals={[prog, goals.step > prog ? goals.step - prog : 0]}
               labs={["Steps Done", "Steps to Go"]}
-            />
-            <IonItemDivider />
-            {/* Calories Burned */}
-            <p>
-              Calories Burned:{" "}
-              {Math.floor(walk / 16.9) + Math.floor(run / 8.45)} out of{" "}
-              {goals.cal}
-              <br />
-            </p>
-            <ProgressRing
-              vals={[
-                Math.floor(walk / 16.9) + Math.floor(run / 8.45),
-                goals.step > Math.floor(walk / 16.9) + Math.floor(run / 8.45)
-                  ? goals.step -
-                    Math.floor(walk / 16.9) +
-                    Math.floor(run / 8.45)
-                  : 0,
-              ]}
-              labs={["Calories Burned", "Calories to Burn"]}
             />
             <IonItemDivider />
             {/* Distance Travelled */}
@@ -126,18 +107,43 @@ const HomeScreen: React.FC = () => {
               Distance Travelled:{" "}
               {Math.floor(walk * 0.74) + Math.floor(run * 1.651)} out of{" "}
               {goals.dist}
-              <br />{" "}
             </p>
+            <h2>
+              You need to travel{" "}
+              {goals.dist - (Math.floor(walk * 0.74) + Math.floor(run * 1.651))}{" "}
+              more meters to reach your goal.
+            </h2>
             <ProgressRing
               vals={[
                 Math.floor(walk * 0.74) + Math.floor(run * 1.651),
-                goals.step > Math.floor(walk * 0.74) + Math.floor(run * 1.651)
-                  ? goals.step -
+                goals.dist > Math.floor(walk * 0.74) + Math.floor(run * 1.651)
+                  ? goals.dist -
                     Math.floor(walk * 0.74) +
                     Math.floor(run * 1.651)
                   : 0,
               ]}
               labs={["Distance Travelled", "Distance to Go"]}
+            />
+            <IonItemDivider />
+            {/* Calories Burned */}
+            <p>
+              Calories Burned:{" "}
+              {Math.floor(walk / 16.9) + Math.floor(run / 8.45)} out of{" "}
+              {goals.cal}
+            </p>
+            <h2>
+              You need to burn{" "}
+              {goals.cal - Math.floor(walk / 16.9) + Math.floor(run / 8.45)}{" "}
+              more calories to reach your goal.
+            </h2>
+            <ProgressRing
+              vals={[
+                Math.floor(walk / 16.9) + Math.floor(run / 8.45),
+                goals.cal > Math.floor(walk / 16.9) + Math.floor(run / 8.45)
+                  ? goals.cal - Math.floor(walk / 16.9) + Math.floor(run / 8.45)
+                  : 0,
+              ]}
+              labs={["Calories Burned", "Calories to Burn"]}
             />
             <IonItemDivider />
           </div>
