@@ -90,7 +90,7 @@ const App: React.FC = () => (
             </IonTabButton>
             <IonTabButton tab="stats" href="/WeightsScreen">
               <IonIcon icon={statsChartOutline} />
-              <IonLabel>Stats</IonLabel>
+              <IonLabel>Weight</IonLabel>
             </IonTabButton>
             <IonTabButton tab="userProfile" href="/UserProfileScreen">
               <IonIcon icon={personCircle} />
