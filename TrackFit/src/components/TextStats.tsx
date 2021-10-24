@@ -77,10 +77,10 @@ export const TextStats = () => {
         <p>Activity: You are {stepsContext.exerciseType}</p>
       </IonRow>
       <IonRow>
-        <p>{steps}</p>
+        <p>{steps} / {workoutContext.workoutSteps} steps</p>
       </IonRow>
       <IonRow>
-        <p>{distance}</p>
+        <p>{distance} / {workoutContext.workoutDistance}m</p>
       </IonRow>
       <IonRow>
         <p>{caloriesBurned}</p>
