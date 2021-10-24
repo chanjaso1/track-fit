@@ -7,7 +7,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonItem,
+  IonItemDivider,
 } from "@ionic/react";
 import { useIonRouter } from "@ionic/react";
 // import { Vibration } from "@ionic-native/vibration/ngx";
@@ -24,7 +24,7 @@ import { getGoals, getProgress } from "../data/utilities/Firestore";
 import "../styles/styles.css";
 
 const HomeScreen: React.FC = () => {
-  const router = useIonRouter();
+  const router = useIonRouter(); //	Initializes the router
   // let vibration = new ActivateVibration(new Vibration());
 
   const goals = useGoalsContext();
@@ -88,7 +88,7 @@ const HomeScreen: React.FC = () => {
                   Welcome to TrackFit!
                   <br />
                   View your current progress below.
-                  <IonItem />
+                  <IonItemDivider />
                 </h2>
               </IonCol>
             </IonRow>
@@ -101,7 +101,7 @@ const HomeScreen: React.FC = () => {
               vals={[prog, goals.step > prog ? goals.step - prog : 0]}
               labs={["Steps Done", "Steps to Go"]}
             />
-            <IonItem />
+            <IonItemDivider />
             {/* Calories Burned */}
             <p>
               Calories Burned:{" "}
@@ -120,7 +120,7 @@ const HomeScreen: React.FC = () => {
               ]}
               labs={["Calories Burned", "Calories to Burn"]}
             />
-            <IonItem />
+            <IonItemDivider />
             {/* Distance Travelled */}
             <p>
               Distance Travelled:{" "}
@@ -139,7 +139,7 @@ const HomeScreen: React.FC = () => {
               ]}
               labs={["Distance Travelled", "Distance to Go"]}
             />
-            <IonItem />
+            <IonItemDivider />
           </div>
         </IonGrid>
       </IonContent>
