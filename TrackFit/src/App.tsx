@@ -24,7 +24,7 @@ import ResultsScreen from "./screens/ResultsScreen";
 import SetDailyWeightScreen from "./screens/SetDailyWeightScreen";
 import SetGoalScreen from "./screens/SetGoalScreen";
 import SetWorkoutScreen from "./screens/SetWorkoutScreen";
-import StatsScreen from "./screens/StatsScreen";
+import WeightsScreen from "./screens/WeightsScreen";
 import UserProfileScreen from "./screens/UserProfileScreen";
 
 /* Core CSS required for Ionic components to work properly */
@@ -71,8 +71,8 @@ const App: React.FC = () => (
             <Route path="/SetWorkoutScreen">
               <SetWorkoutScreen />
             </Route>
-            <Route path="/StatsScreen">
-              <StatsScreen />
+            <Route path="/WeightsScreen">
+              <WeightsScreen />
             </Route>
             <Route path="/UserProfileScreen">
               <UserProfileScreen />
@@ -88,7 +88,7 @@ const App: React.FC = () => (
               <IonIcon icon={home} />
               <IonLabel>Home</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="stats" href="/StatsScreen">
+            <IonTabButton tab="stats" href="/WeightsScreen">
               <IonIcon icon={statsChartOutline} />
               <IonLabel>Stats</IonLabel>
             </IonTabButton>

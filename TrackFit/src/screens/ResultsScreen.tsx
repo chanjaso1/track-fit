@@ -1,11 +1,23 @@
-import { IonButton, IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import { dynamicNavigate } from '../functions/navigation';
-import { useIonRouter } from '@ionic/react';
-// import './Tab2.css';
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonLabel,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonGrid,
+  IonRow,
+  IonCol,
+} from "@ionic/react";
+import ExploreContainer from "../components/ExploreContainer";
+import { dynamicNavigate } from "../functions/navigation";
+import { useIonRouter } from "@ionic/react";
+
+import "../styles/styles.css";
 
 const ResultsScreen: React.FC = () => {
-  const router = useIonRouter()
+  const router = useIonRouter();
 
   return (
     <IonPage>
@@ -15,15 +27,22 @@ const ResultsScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Results" />
-        <IonButton onClick={() => {dynamicNavigate("/HomeScreen", "forward", router)}}>
-          <IonLabel>Continue</IonLabel>
-        </IonButton>
+        <div className="page">
+          <IonGrid>
+            <IonRow>
+              <h1>Workout Results</h1>
+            </IonRow>
+            <IonRow>
+              <IonButton
+                onClick={() => {
+                  dynamicNavigate("/HomeScreen", "forward", router);
+                }}
+              >
+                <IonLabel>Continue</IonLabel>
+              </IonButton>
+            </IonRow>
+          </IonGrid>
+        </div>
       </IonContent>
     </IonPage>
   );
