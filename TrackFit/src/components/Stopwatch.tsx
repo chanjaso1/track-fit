@@ -8,22 +8,28 @@
 import React, { useEffect, useState } from "react";
 import { IonButton, IonGrid, IonLabel, IonRow, IonCol } from "@ionic/react";
 import { Subscription } from "rxjs";
-import { useIsRecording, useStepsContext } from "../functions/Context";
+import {
+  useIsRecording,
+  useStepsContext,
+  useTimerContext,
+} from "../functions/Context";
 import { startCount } from "../functions/DeviceMotion";
 import { TextStats } from "./TextStats";
 
 import "../styles/styles.css";
 
 const Stopwatch: React.FC = () => {
-  const [hours, setHour] = useState(0);
-  const [minutes, setMinute] = useState(0);
-  const [seconds, setSecond] = useState(0);
+  const timerContext = useTimerContext();
+  let hours = timerContext.hours;
+  let minutes = timerContext.minutes;
+  let seconds = timerContext.seconds;
   const [time, setTime] = useState("00:00:00");
   const [timerRunning, setTimerRunning] = useState(false);
   const isRecordingContext = useIsRecording();
   const stepsContext = useStepsContext();
 
   useEffect(() => {
+    setTime(formatTime());
     countUp();
   });
 
@@ -38,21 +44,24 @@ const Stopwatch: React.FC = () => {
     setTimeout(() => {
       // if full second, increment minute
       if (seconds >= 59) {
-        setSecond(0);
-        setMinute(minutes + 1);
+        seconds = 0;
+        minutes = minutes + 1;
 
         // if full minute, increment hour
         if (minutes >= 59) {
-          setMinute(0);
-          setHour(hours + 1);
+          minutes = 0;
+          hours = hours + 1;
         } else {
-          setMinute(minutes + 1);
+          minutes = minutes + 1;
         }
       } else {
-        setSecond(seconds + 1);
+        seconds = seconds + 1;
       }
 
       // format the time
+      timerContext.hours = hours;
+      timerContext.minutes = minutes;
+      timerContext.seconds = seconds;
       setTime(formatTime());
       return time;
     }, 1000);
