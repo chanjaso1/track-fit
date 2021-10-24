@@ -91,6 +91,22 @@ export async function updateUserDetails(name: string, age: number) {
 }
 
 /**
+ * Update the user's daily goals within the database.
+ * This includes the goal calories, distance, weight and steps.
+ */
+ export async function updateDailyGoals(calories:any, distance:any, steps:any, weight:any) {
+  const user = doc(db, "users", "user1"); // gets the user stored in the database
+
+  // updates the daily goal fields within the database
+  await updateDoc(user, {
+    GoalCalories: calories,
+    GoalDistance: distance,
+    GoalSteps: steps,
+    GoalWeight: weight,
+  });
+}
+
+/**
  * Obtains the date's step progress so far
  */
 export async function getProgress() {
